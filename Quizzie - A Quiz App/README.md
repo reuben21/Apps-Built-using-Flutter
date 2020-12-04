@@ -1,4 +1,4 @@
-# Quizzie - A Quix App
+# Quizzie - A Quiz App
 
 A new Flutter application.
 

@@ -1,16 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/Answer.dart';
+import 'question.dart';
+import 'color.dart';
 
-const kShrinePink50 = Color(0xFFFEEAE6);
-const kShrinePink100 = Color(0xFFFEDBD0);
-const kShrinePink300 = Color(0xFFFBB8AC);
-const kShrinePink400 = Color(0xFFEAA4A4);
-
-const kShrineBrown900 = Color(0xFF442B2D);
-
-const kShrineErrorRed = Color(0xFFC5032B);
-
-const kShrineSurfaceWhite = Color(0xFFFFFBFA);
-const kShrineBackgroundWhite = Colors.white;
 
 void main() {
   runApp(MyApp());
@@ -53,29 +45,29 @@ class _MyAppState extends State<MyApp> {
               fontSize: 30,
               fontFamily: 'PT Serif',
               fontWeight: FontWeight.w400,
+
             ),
-          ),
+               textAlign: TextAlign.center),
           backgroundColor: kShrinePink300,
         ),
         backgroundColor: kShrinePink400,
         body: Column(
           children: <Widget>[
-            Text(
+            Question(
               questions.elementAt(_questionIndex),
-              style: TextStyle(color: kShrineBrown900, fontSize: 30),
             ),
             RaisedButton(
-              child: Text(('Answer 1')),
+              child: Answer('Red'),
               onPressed: answerQuestion,
             ),
             RaisedButton(
-              child: Text(('Answer 2')),
+              child: Answer('Yellow'),
               onPressed: () {
                 print("Answer 2 Button Pressed");
               },
             ),
             RaisedButton(
-              child: Text(('Answer 3')),
+              child: Answer('Green'),
               onPressed: () {
                 print("Answer 3 Button Pressed");
               },
