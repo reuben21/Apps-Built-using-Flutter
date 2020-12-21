@@ -1,5 +1,7 @@
 # Quizzie - A Quiz App
 
+Learning the Basics of UI with Flutter
+
 A new Flutter application.
 
 ## Getting Started
