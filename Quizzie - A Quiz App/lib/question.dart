@@ -14,7 +14,8 @@ class Question extends StatelessWidget {
         margin: EdgeInsets.all(10),
         child:Text(
       questionText,
-      style: TextStyle(color: kShrineBrown900,fontFamily: 'PT Serif', fontSize: 30),
+      style: TextStyle(color: kShrineBrown900,fontFamily: 'PT Serif',
+          fontSize: 30),
       textAlign: TextAlign.center,
     ));
   }

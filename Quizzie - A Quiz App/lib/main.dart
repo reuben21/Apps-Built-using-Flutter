@@ -3,13 +3,11 @@ import 'package:flutter_app/Answer.dart';
 import 'question.dart';
 import 'color.dart';
 
-
 void main() {
   runApp(MyApp());
 }
 
 class MyApp extends StatefulWidget {
-
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
@@ -19,8 +17,8 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   var _questionIndex = 0;
-
-  void answerQuestion() {
+  // var _answerQuestion = 0;
+  void _answerQuestion() {
     setState(() {
       _questionIndex = _questionIndex + 1;
     });
@@ -32,46 +30,42 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     // TODO: implement build
     var questions = [
-      "What's your Favourite Color?",
-      "What's your Favourite Animal?"
+      {
+        'questionText': "What's your Favourite Color?",
+        'answers': ['Black', 'Red', 'Green', 'Yellow']
+      },
+      {
+        'questionText': "What's your Favourite Animal?",
+        'answers': ['Dog', 'Cat', 'Lion', 'Rufus']
+      },
+      {
+        'questionText': "What's your Favourite Phone?",
+        'answers': ['S10', 'S9', 'S8', 'S6']
+      },
     ];
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text(
-            "Quizzie",
-            style: TextStyle(
-              color: kShrineBrown900,
-              fontSize: 30,
-              fontFamily: 'PT Serif',
-              fontWeight: FontWeight.w400,
-
-            ),
-               textAlign: TextAlign.center),
+          title: Text("Quizzie",
+              style: TextStyle(
+                color: kShrineBrown900,
+                fontSize: 30,
+                fontFamily: 'PT Serif',
+                fontWeight: FontWeight.w400,
+              ),
+              textAlign: TextAlign.center),
           backgroundColor: kShrinePink300,
         ),
         backgroundColor: kShrinePink400,
         body: Column(
           children: <Widget>[
             Question(
-              questions.elementAt(_questionIndex),
+              questions[_questionIndex]['questionText'],
             ),
-            RaisedButton(
-              child: Answer('Red'),
-              onPressed: answerQuestion,
-            ),
-            RaisedButton(
-              child: Answer('Yellow'),
-              onPressed: () {
-                print("Answer 2 Button Pressed");
-              },
-            ),
-            RaisedButton(
-              child: Answer('Green'),
-              onPressed: () {
-                print("Answer 3 Button Pressed");
-              },
-            )
+            ...(questions[_questionIndex]['answers'] as List<String>).map((answer){
+              return  Answer(_answerQuestion,answer);
+            }).toList()
+
           ],
         ),
       ),
