@@ -11,14 +11,15 @@ class Answer extends StatelessWidget {
   Widget build(BuildContext context) {
     // TODO: implement build
     return Container(
-      width: double.infinity,
+      width: 250,
+      height: 50,
       margin: EdgeInsets.all(30),
       child: RaisedButton(
-        color: kShrineBrown900,
+        color: kShrinePink300,
 
         child: Text(answerText,style: TextStyle(
-              color: kShrinePink50,
-              fontSize: 20,
+              color: kShrineBrown900,
+              fontSize: 25,
               fontFamily: 'PT Serif',
               fontWeight: FontWeight.w400,
             )),
