@@ -5,10 +5,11 @@ Learning the Basics of UI with Flutter
 A new Flutter application.
 <br/>
 <h2>Getting Started </h2>
+<h3>Below is the Preview Of The App </h3>
+<img src="https://media.giphy.com/media/Iul2e7IuPlbhEsC1YZ/giphy.gif" alt="Error File Not Found"/>
 <br/>
 This project is a starting point for a Flutter application.
 <br/>
-<img src="https://media.giphy.com/media/Iul2e7IuPlbhEsC1YZ/giphy.gif" alt="Error File Not Found"/>
 A few resources to get you started if this is your first Flutter project:
 
 - [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
