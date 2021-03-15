@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class CardWidget extends StatelessWidget {
   String title;
   String amount;
   String date;
 
-  CardWidget(this.title,this.amount,this.date) {}
+  CardWidget(this.title,this.amount,this.date);
 
   @override
   Widget build(BuildContext context) {
