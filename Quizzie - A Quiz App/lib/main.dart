@@ -47,6 +47,15 @@ class _MyAppState extends State<MyApp> {
         {'text': 'S6', 'score': 5}
       ]
     },
+    {
+      'questionText': "What's your Favourite Phone?",
+      'answers': [
+        {'text': 'S10', 'score': 10},
+        {'text': 'S9', 'score': 7},
+        {'text': 'S8', 'score': 8},
+        {'text': 'S6', 'score': 5}
+      ]
+    },
   ];
 
   void _restQuiz() {
