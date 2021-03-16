@@ -96,7 +96,8 @@ class _MyHomePageState extends State<MyHomePage> {
               width: double.infinity,
               height: 140,
               child: Padding(
-                padding: const EdgeInsets.all(5.0),
+                padding: const EdgeInsets.all(10.0),
+
                 child: Chart(_recentTransaction),
               )),
           TransactionList(_userTransactions),
