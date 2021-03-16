@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../models/transaction.dart';
 import '../COLORS.dart';
 import 'package:intl/intl.dart';
+import './chart_bar.dart';
 
 class Chart extends StatelessWidget {
 
@@ -25,7 +26,10 @@ class Chart extends StatelessWidget {
       }
       print(DateFormat.E().format(weekDay));
       print(totalSum);
-      return {'day': DateFormat.E().format(weekDay), 'amount': totalSum};
+      return {
+        'day': DateFormat.E().format(weekDay).substring(0,1),
+        'amount': totalSum
+      };
     });
   }
 
@@ -39,20 +43,9 @@ class Chart extends StatelessWidget {
       ),
       color: colorMediumGreen,
       child: Row(
-        children: <Widget>[
-          // Expanded(
-          //     flex: 1,
-          //     child:
-          // ),
-          // Expanded(
-          //     flex: 2,
-          //     child:
-          // ),
-          // Expanded(
-          //     flex: 1,
-          //     child:
-          // )
-        ],
+        children: groupedTransactionValues.map((data){
+          return Text('');
+          }).toList(),
       ),
     );
   }
