@@ -94,8 +94,11 @@ class _MyHomePageState extends State<MyHomePage> {
         children: <Widget>[
           Container(
               width: double.infinity,
-              height: 200,
-              child: Chart(_recentTransaction)),
+              height: 140,
+              child: Padding(
+                padding: const EdgeInsets.all(5.0),
+                child: Chart(_recentTransaction),
+              )),
           TransactionList(_userTransactions),
         ],
       )),

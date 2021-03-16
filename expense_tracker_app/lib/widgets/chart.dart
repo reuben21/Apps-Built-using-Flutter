@@ -33,6 +33,12 @@ class Chart extends StatelessWidget {
     });
   }
 
+  double get totalSpending {
+    return groupedTransactionValues.fold(0.0,(sum,item){
+      return sum+item['amount'];
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -42,10 +48,15 @@ class Chart extends StatelessWidget {
         borderRadius: BorderRadius.circular(15),
       ),
       color: colorMediumGreen,
-      child: Row(
-        children: groupedTransactionValues.map((data){
-          return Text('');
-          }).toList(),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: groupedTransactionValues.map((data){
+            return  ChartBar(data['day'],data['amount'],totalSpending == 0.0 ? 0.0 :(data['amount'] as double)/totalSpending);
+
+            }).toList(),
+        ),
       ),
     );
   }
