@@ -23,7 +23,7 @@ class MyHomePage extends StatelessWidget {
         appBar: AppBar(
           title: Text('Personal Expense Tracker'),
         ),
-        body: UserTransaction()
+        body: SingleChildScrollView(child: UserTransaction())
     );
   }
 }
