@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import '../COLORS.dart';
 // ignore: must_be_immutable
 class CardWidget extends StatelessWidget {
   String title;
@@ -17,7 +17,7 @@ class CardWidget extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15),
         ),
-        color:  Colors.blueAccent,
+        color:colorMediumGreen,
         child: Row(
           children: <Widget>[
             Expanded(
@@ -26,7 +26,9 @@ class CardWidget extends StatelessWidget {
               Text(
                   amount,
                   textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 18)
+                  style: TextStyle(
+                      fontSize: 18
+                  )
               ),
             ),
             Expanded(
@@ -43,7 +45,7 @@ class CardWidget extends StatelessWidget {
                       Text(
                           title,
                           textAlign: TextAlign.center,
-                          style: TextStyle(fontSize: 16)
+                          style: Theme.of(context).textTheme.title
                       ),
                       SizedBox(height: 10),
                       Text(date,
@@ -60,11 +62,10 @@ class CardWidget extends StatelessWidget {
               child: IconButton(
                 icon: const Icon(
                   Icons.delete_outline,
-                  color: Colors.white,
+
                   size: 25.0,
                   semanticLabel: 'Delete Icon',
                 ),
-                color: Colors.white,
                 onPressed: () {},
               ),
             )

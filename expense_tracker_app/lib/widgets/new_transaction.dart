@@ -1,12 +1,19 @@
+import 'package:expense_tracker_app/COLORS.dart';
 import 'package:flutter/material.dart';
 
-class NewTransaction extends StatelessWidget {
+class NewTransaction extends StatefulWidget {
   final Function addTx;
-  final titleController = TextEditingController();
-  final amountController = TextEditingController();
 
   NewTransaction(this.addTx);
 
+  @override
+  _NewTransactionState createState() => _NewTransactionState();
+}
+
+class _NewTransactionState extends State<NewTransaction> {
+  final titleController = TextEditingController();
+
+  final amountController = TextEditingController();
 
   void _submitData(){
     final enteredTitle = titleController.text;
@@ -14,8 +21,9 @@ class NewTransaction extends StatelessWidget {
     if(enteredTitle.isEmpty || enteredAmount <=0 ) {
       return;
     }
-    addTx(titleController.text,
+    widget.addTx(titleController.text,
         double.parse(amountController.text));
+    Navigator.of(context).pop();
   }
 
   @override
@@ -23,20 +31,20 @@ class NewTransaction extends StatelessWidget {
     // TODO: implement build
     return Container(
       child: Column(
-          mainAxisAlignment: MainAxisAlignment.end,
+          mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.end,
           children: <Widget>[
             Padding(
               padding: const EdgeInsets.all(10.0),
               child: TextFormField(
                 controller: titleController,
-                cursorColor: Colors.blueAccent,
+                cursorColor: colorLightGrey,
                 maxLength: 20,
                 onFieldSubmitted: (_)=>_submitData(),
                 decoration: InputDecoration(
                   labelText: 'Title',
                   labelStyle: TextStyle(
-                    color: Colors.blueAccent,
+                    color: colorLightGrey,
                     fontSize: 20,
                   ),
                   // helperText: 'Amount',
@@ -44,7 +52,7 @@ class NewTransaction extends StatelessWidget {
                     Icons.check_circle,
                   ),
                   enabledBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Color(0xFF6200EE)),
+                    borderSide: BorderSide(color: colorLightGrey,),
                   ),
                 ),
               ),
@@ -53,14 +61,14 @@ class NewTransaction extends StatelessWidget {
               padding: const EdgeInsets.all(12.0),
               child: TextFormField(
                 controller: amountController,
-                cursorColor: Colors.blueAccent,
+                cursorColor:colorLightGrey,
                 maxLength: 20,
                 keyboardType: TextInputType.number,
                 onFieldSubmitted: (_)=>_submitData(),
                 decoration: InputDecoration(
                   labelText: 'Amount',
                   labelStyle: TextStyle(
-                    color: Colors.blueAccent,
+                    color: colorLightGrey,
                     fontSize: 20,
                   ),
                   // helperText: 'Helper text',
@@ -68,7 +76,7 @@ class NewTransaction extends StatelessWidget {
                     Icons.check_circle,
                   ),
                   enabledBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Color(0xFF6200EE)),
+                    borderSide: BorderSide(color: colorLightGrey),
                   ),
                 ),
               ),
@@ -77,10 +85,10 @@ class NewTransaction extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: OutlinedButton.icon(
                 onPressed: _submitData,
-                icon: Icon(Icons.add, size: 18),
+                icon: Icon(Icons.add, size: 18,color: colorLightGrey),
                 label: Text("Add Item",
                     style: TextStyle(
-                      color: Colors.blueAccent,
+                      color: colorLightGrey,
                       fontSize: 18,
                     )),
               ),
