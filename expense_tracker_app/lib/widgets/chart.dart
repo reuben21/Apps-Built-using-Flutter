@@ -24,13 +24,13 @@ class Chart extends StatelessWidget {
           totalSum += recentTransactions[i].amount;
         }
       }
-      print(DateFormat.E().format(weekDay));
-      print(totalSum);
+      // print(DateFormat.E().format(weekDay));
+      // print(totalSum);
       return {
         'day': DateFormat.E().format(weekDay).substring(0,1),
         'amount': totalSum
       };
-    });
+    }).reversed.toList();
   }
 
   double get totalSpending {
@@ -42,14 +42,14 @@ class Chart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    print(groupedTransactionValues);
+    // print(groupedTransactionValues);
     return Card(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(15),
       ),
       color: colorMediumGreen,
       child: Padding(
-        padding: const EdgeInsets.all(10.0),
+        padding: const EdgeInsets.all(8.0),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: groupedTransactionValues.map((data){

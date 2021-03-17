@@ -12,6 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Personal Expense Tracker',
       theme: ThemeData(
           primaryColor: colorMediumGreen,
@@ -94,10 +95,9 @@ class _MyHomePageState extends State<MyHomePage> {
         children: <Widget>[
           Container(
               width: double.infinity,
-              height: 140,
+              height: 150,
               child: Padding(
-                padding: const EdgeInsets.all(10.0),
-
+                padding: const EdgeInsets.all(8.0),
                 child: Chart(_recentTransaction),
               )),
           TransactionList(_userTransactions),
