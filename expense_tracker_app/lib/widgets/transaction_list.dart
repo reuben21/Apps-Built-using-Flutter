@@ -5,8 +5,8 @@ import '../widgets/card.dart';
 
 class TransactionList extends StatelessWidget {
   final List<Transaction> transactions;
-
-  TransactionList(this.transactions);
+  final Function delTx;
+  TransactionList(this.transactions,this.delTx);
 
   @override
   Widget build(BuildContext context) {
@@ -30,10 +30,10 @@ class TransactionList extends StatelessWidget {
             )
           : ListView.builder(
               itemBuilder: (ctx, index) {
-                return CardWidget(
+                return CardWidget(transactions[index].id,
                     transactions[index].title,
                     '\$${transactions[index].amount.toStringAsFixed(2)}',
-                    DateFormat.yMMMd().format(transactions[index].date));
+                    DateFormat.yMMMd().format(transactions[index].date),delTx);
               },
               itemCount: transactions.length,
               // children: transactions.map((tx) {

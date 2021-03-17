@@ -1,5 +1,6 @@
 import 'package:expense_tracker_app/COLORS.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class NewTransaction extends StatefulWidget {
   final Function addTx;
@@ -12,18 +13,31 @@ class NewTransaction extends StatefulWidget {
 
 class _NewTransactionState extends State<NewTransaction> {
   final titleController = TextEditingController();
-
   final amountController = TextEditingController();
+  DateTime selectDate;
 
   void _submitData(){
     final enteredTitle = titleController.text;
     final enteredAmount = double.parse(amountController.text);
-    if(enteredTitle.isEmpty || enteredAmount <=0 ) {
+    if(enteredTitle.isEmpty || enteredAmount <=0 || selectDate == null ) {
       return;
     }
     widget.addTx(titleController.text,
-        double.parse(amountController.text));
+        double.parse(amountController.text),selectDate);
     Navigator.of(context).pop();
+  }
+
+  void _presentDatePicker() {
+    showDatePicker(context: context, initialDate: DateTime.now(), firstDate: DateTime(2021), lastDate: DateTime.now())
+        .then((pickedDate){
+          if(pickedDate == null) {
+            return;
+          }
+          setState(() {
+            selectDate = pickedDate;
+          });
+
+    });
   }
 
   @override
@@ -81,6 +95,21 @@ class _NewTransactionState extends State<NewTransaction> {
                 ),
               ),
             ),
+            Row(children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(selectDate == null ? 'No Date Chosen': DateFormat.yMd().format(selectDate)),
+              ),
+              OutlinedButton.icon(
+                onPressed: _presentDatePicker,
+                icon: Icon(Icons.add, size: 18,color: colorLightGrey),
+                label: Text("Choose Date",
+                    style: TextStyle(
+                      color: colorLightGrey,
+                      fontSize: 18,
+                    )),
+              ),
+            ],),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: OutlinedButton.icon(

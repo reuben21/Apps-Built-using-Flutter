@@ -3,11 +3,12 @@ import '../COLORS.dart';
 
 // ignore: must_be_immutable
 class CardWidget extends StatelessWidget {
+  String id;
   String title;
   String amount;
   String date;
-
-  CardWidget(this.title, this.amount, this.date);
+  final Function delTx;
+  CardWidget(this.id,this.title, this.amount, this.date,this.delTx);
 
   @override
   Widget build(BuildContext context) {
@@ -69,7 +70,7 @@ class CardWidget extends StatelessWidget {
                     size: 25.0,
                     semanticLabel: 'Delete Icon',
                   ),
-                  onPressed: () {},
+                  onPressed: ()=>delTx(id),
                 ),
               )
             ],
