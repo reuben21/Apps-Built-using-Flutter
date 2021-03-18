@@ -7,7 +7,7 @@
         </tr>
     <tr>
         <td style="text-align:center"><div align="center"><h2>Quizzie - A Quiz App </h2> <img src="https://media.giphy.com/media/Iul2e7IuPlbhEsC1YZ/giphy.gif" /></div></td>
-        <td style="text-align:center"><div align="center"><h2>Tip Calculator App</h2> <img src="https://media.giphy.com/media/RK5RHRt1Fqrek8CvIs/giphy.gif"/></div></td>
+        <td style="text-align:center"><div align="center"><h2>Personal Expense Tracker</h2> <img src="https://github.com/reuben21/Apps-Built-with-Flutter/blob/main/expense_tracker_app/assets/image/Image1.png" width="60%"/></div></td>
         <td style="text-align:center"><div align="center"><h2>BMI Calculator</h2> <img src="https://media.giphy.com/media/j2AekBZ4llkALbFwqz/giphy.gif"/></div></td>
     </tr>
     </tbody>
