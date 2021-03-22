@@ -96,7 +96,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    final isLandscape = MediaQuery.of(context).orientation == Orientation.landscape;
+    final mediaQuery = MediaQuery.of(context);
+    final isLandscape = mediaQuery.orientation == Orientation.landscape;
     final appBar = AppBar(
       title: Text('Personal Expense Tracker'),
       actions: <Widget>[
@@ -114,14 +115,11 @@ class _MyHomePageState extends State<MyHomePage> {
 
     final txList = Container(
         width: double.infinity,
-        height: (MediaQuery
-            .of(context)
+        height: (mediaQuery
             .size
             .height -
             appBar.preferredSize.height -
-            MediaQuery
-                .of(context)
-                .padding
+            mediaQuery.padding
                 .top) *
             0.75,
         child: TransactionList(
@@ -134,14 +132,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 children: <Widget>[
                   Container(
                       width: double.infinity,
-                      height: (MediaQuery
-                          .of(context)
-                          .size
+                      height: (mediaQuery.size
                           .height -
                           appBar.preferredSize.height -
-                          MediaQuery
-                              .of(context)
-                              .padding
+                          mediaQuery.padding
                               .top) *
                           0.25,
                       child: Padding(
@@ -169,14 +163,10 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                   _showChart ? Container(
                       width: double.infinity,
-                      height: (MediaQuery
-                          .of(context)
-                          .size
+                      height: (mediaQuery.size
                           .height -
                           appBar.preferredSize.height -
-                          MediaQuery
-                              .of(context)
-                              .padding
+                          mediaQuery.padding
                               .top) *
                           0.7,
                       child: Padding(
