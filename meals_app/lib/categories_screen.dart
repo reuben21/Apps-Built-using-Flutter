@@ -10,7 +10,9 @@ class CategoriesScreen extends StatelessWidget {
     // TODO: implement build
     return Scaffold(
         appBar: AppBar(
-          title: const Text("Deli Dart",),
+          title:  Text("Deli Dart",
+            style: Theme.of(context).textTheme.headline6),
+
         ),
       body: GridView(
         padding: const EdgeInsets.all(10),
