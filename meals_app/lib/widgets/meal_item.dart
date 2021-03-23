@@ -32,27 +32,19 @@ class MealItem extends StatelessWidget {
     }
   }
 
-  Widget get affordabilityWidget {
+  String get affordabilityText {
     switch (affordability) {
       case Affordability.Affordable:
-        return Icon(Icons.attach_money);
+        return "Affordable";
         break;
       case Affordability.Pricey:
-        return Row(mainAxisAlignment: MainAxisAlignment.center,children: <Widget>[
-          Icon(Icons.attach_money),
-          Icon(Icons.attach_money),
-        ]);
+        return "Pricey";
         break;
       case Affordability.Luxurious:
-        return Row(children: <Widget>[
-          Icon(Icons.attach_money),
-          Icon(Icons.attach_money),
-        ]);
+        return "Luxurious";
         break;
       default:
-        return Row(children: <Widget>[
-
-        ]);
+        return "Unknown";
     }
   }
 
@@ -126,8 +118,12 @@ class MealItem extends StatelessWidget {
                     Text('${complexityText}')
                   ]),
                   Row(children: <Widget>[
-                    affordabilityWidget,
-                  ])
+                    Icon(Icons.attach_money),
+                    SizedBox(
+                      width: 6,
+                    ),
+                    Text('${affordabilityText}')
+                  ]),
                 ],
               ),
             )
