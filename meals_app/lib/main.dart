@@ -14,22 +14,32 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Meals App',
       theme: ThemeData(
-        primaryColor: Colors.black,
-        accentColor: Colors.blueAccent,
-
-        canvasColor: Colors.black,
-        textTheme: ThemeData.light().textTheme.copyWith(
-          bodyText1: TextStyle(color:Colors.white,fontSize: 18,fontFamily: 'Handlee'),
-          bodyText2: TextStyle(color:Colors.white,fontFamily: 'Handlee',),
-          headline6: TextStyle(color:Colors.redAccent,fontSize: 20,fontFamily: 'PlayfairDisplay',),
-
-        )
-
-      ),
+          primaryColor: Colors.black,
+          accentColor: Colors.blueAccent,
+          canvasColor: Colors.black,
+          textTheme: ThemeData.light().textTheme.copyWith(
+                bodyText1: TextStyle(
+                    color: Colors.white, fontSize: 18, fontFamily: 'Handlee'),
+                bodyText2: TextStyle(
+                  color: Colors.white,
+                  fontFamily: 'Handlee',
+                ),
+                headline6: TextStyle(
+                  color: Colors.redAccent,
+                  fontSize: 20,
+                  fontFamily: 'PlayfairDisplay',
+                ),
+              )),
       home: CategoriesScreen(),
       routes: {
-        CategoryMealsScreen.routeName:(ctx) => CategoryMealsScreen(),
-        MealDetailScreen.routeName:(ctx) => MealDetailScreen(),
+        CategoryMealsScreen.routeName: (ctx) => CategoryMealsScreen(),
+        MealDetailScreen.routeName: (ctx) => MealDetailScreen(),
+      },
+      onGenerateRoute: (settings) {
+        return MaterialPageRoute(builder: (ctx) => CategoriesScreen());
+      },
+      onUnknownRoute: (settings) {
+        return MaterialPageRoute(builder: (ctx) => CategoriesScreen());
       },
     );
   }
