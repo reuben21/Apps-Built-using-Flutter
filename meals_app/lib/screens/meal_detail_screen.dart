@@ -5,7 +5,22 @@ import '../data/dummy_data.dart';
 class MealDetailScreen extends StatelessWidget {
   static const routeName = '/meal-detail';
 
-  MealDetailScreen({Key key}) : super(key: key);
+  Widget buildSectionTitle(BuildContext ctx, String text) {
+    return Container(
+        margin: EdgeInsets.symmetric(vertical: 10),
+        child: Text(text, style: Theme.of(ctx).textTheme.headline6));
+  }
+
+  Widget buildContainer(Widget child) {
+    return Container(
+        decoration: BoxDecoration(
+            color: Colors.transparent,
+            border: Border.all(color: Colors.white60),
+            borderRadius: BorderRadius.circular(10)),
+        height: 200,
+        width: double.infinity,
+        child: child);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -16,38 +31,42 @@ class MealDetailScreen extends StatelessWidget {
         appBar: AppBar(
             title: Text(selectedMeal.title,
                 style: Theme.of(context).textTheme.headline6)),
-        body: Column(
-          children: <Widget>[
-            Container(
-
-                height: 300,
-                width: double.infinity,
-                child: Image.network(selectedMeal.imageUrl, fit: BoxFit.cover)),
-            Container(
-                margin: EdgeInsets.symmetric(vertical: 10),
-                child: Text('Ingredients',
-                    style: Theme.of(context).textTheme.headline6)),
-            Container(
-              decoration: BoxDecoration(
-                  color: Colors.transparent,
-                  border: Border.all(color: Colors.white60),
-                  borderRadius: BorderRadius.circular(10)
-              ),
-              height: 200,
-              width: double.infinity,
-              child: ListView.builder(
-                itemBuilder: (ctx, index) => Card(
-                  color: Colors.white12,
-                  child: Padding(
-                    padding: const EdgeInsets.all(5.0),
-                    child: Text(selectedMeal.ingredients[index],
-                        style: Theme.of(context).textTheme.headline6),
+        body: SingleChildScrollView(
+          child: Column(
+            children: <Widget>[
+              Container(
+                  height: 300,
+                  width: double.infinity,
+                  child: Image.network(selectedMeal.imageUrl, fit: BoxFit.cover)),
+              buildSectionTitle(context, 'Ingredients'),
+              buildContainer(
+                ListView.builder(
+                  itemBuilder: (ctx, index) => Card(
+                    color: Colors.white12,
+                    child: Padding(
+                      padding: const EdgeInsets.all(5.0),
+                      child: Text(selectedMeal.ingredients[index],
+                          style: Theme.of(context).textTheme.headline6),
+                    ),
                   ),
+                  itemCount: selectedMeal.ingredients.length,
                 ),
-                itemCount: selectedMeal.ingredients.length,
               ),
-            )
-          ],
+              buildSectionTitle(context, 'Steps To Cook'),
+              buildContainer(
+                ListView.builder(
+                  itemBuilder: (ctx, index) => ListTile(
+                    leading: CircleAvatar(child:Text("# ${index+1}",),backgroundColor: Colors.redAccent,),
+                    title: Text(selectedMeal.steps[index],
+                          style: Theme.of(context).textTheme.headline6),
+                    ),
+                  itemCount: selectedMeal.steps.length,
+                  ),
+
+                ),
+
+            ],
+          ),
         ));
   }
 }
