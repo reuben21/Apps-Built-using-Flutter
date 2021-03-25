@@ -29,6 +29,16 @@ class MyApp extends StatelessWidget {
                   fontSize: 20,
                   fontFamily: 'PlayfairDisplay',
                 ),
+            headline5: TextStyle(
+              color: Colors.deepOrangeAccent,
+              fontSize: 20,
+              fontFamily: 'PlayfairDisplay',
+            ),
+            headline4: TextStyle(
+              color: Colors.white,
+              fontSize: 20,
+              fontFamily: 'PlayfairDisplay',
+            ),
               )),
       home: CategoriesScreen(),
       routes: {
