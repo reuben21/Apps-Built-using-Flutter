@@ -13,6 +13,7 @@ class MealDetailScreen extends StatelessWidget {
 
   Widget buildContainer(Widget child) {
     return Container(
+      margin: EdgeInsets.all(10),
         decoration: BoxDecoration(
             color: Colors.transparent,
             border: Border.all(color: Colors.white60),
@@ -55,11 +56,17 @@ class MealDetailScreen extends StatelessWidget {
               buildSectionTitle(context, 'Steps To Cook'),
               buildContainer(
                 ListView.builder(
-                  itemBuilder: (ctx, index) => ListTile(
-                    leading: CircleAvatar(child:Text("# ${index+1}",),backgroundColor: Colors.redAccent,),
-                    title: Text(selectedMeal.steps[index],
-                          style: Theme.of(context).textTheme.headline6),
-                    ),
+
+                  itemBuilder: (ctx, index) => Column(
+                    children: [
+                      ListTile(
+                        leading: CircleAvatar(child:Text("# ${index+1}",),backgroundColor: Colors.redAccent,),
+                        title: Text(selectedMeal.steps[index],
+                              style: Theme.of(context).textTheme.headline6),
+                        ),
+                      Divider(color: Colors.redAccent,),
+                    ],
+                  ),
                   itemCount: selectedMeal.steps.length,
                   ),
 
