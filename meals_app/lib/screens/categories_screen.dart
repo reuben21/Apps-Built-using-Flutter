@@ -9,11 +9,7 @@ class CategoriesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
-        appBar: AppBar(
-          title:  Text("Deli Dart",
-            style: Theme.of(context).textTheme.headline6),
 
-        ),
       body: GridView(
         padding: const EdgeInsets.all(10),
         children: DUMMY_CATEGORIES
