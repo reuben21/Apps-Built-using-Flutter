@@ -23,35 +23,40 @@ class _TabsScreenState extends State<TabsScreen> {
     super.dispose();
   }
 
+  final List<Widget> _pages = [
+    CategoriesScreen(),
+    FavoritesScreen()
+  ];
+
+  int _selectPageIndex = 0;
+
+
+  void _selectPage(int index) {
+    setState(() {
+      _selectPageIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return DefaultTabController(
-        length: 2,
-        child: Scaffold(
-          appBar: AppBar(
-            title: Text('Deli Dart'),
-            bottom: TabBar(
-              tabs: <Widget>[
-                Tab(
-                    icon: Icon(
-                      Icons.category,
-                    ),
-                    text: 'Categories'),
-                Tab(
-                    icon: Icon(
-                      Icons.star,
-                    ),
-                    text: 'Favorites'),
-              ],
-            ),
-          ),
-          body: TabBarView(
-            children: <Widget>[
-              CategoriesScreen(),
-              FavoritesScreen(),
-            ]
-          ),
-        ));
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Deli Dart'),
+      ),
+      body: _pages[_selectPageIndex],
+      bottomNavigationBar: BottomNavigationBar(
+        unselectedItemColor: Colors.white,
+        selectedItemColor: Colors.redAccent,
+        currentIndex: _selectPageIndex,
+        onTap: _selectPage,
+        items: [
+          BottomNavigationBarItem(
+              icon: Icon(Icons.category), label: 'Categories'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.star), label: 'Favorites')
+        ],
+      ),
+    );
   }
 }
