@@ -23,13 +23,12 @@ class _TabsScreenState extends State<TabsScreen> {
     super.dispose();
   }
 
-  final List<Widget> _pages = [
-    CategoriesScreen(),
-    FavoritesScreen()
+  final List<Map<String, Object>> _pages = [
+    {'page': CategoriesScreen(), 'title': 'Deli Dart Categories'},
+    {'page': FavoritesScreen(), 'title': 'Your Favourites'}
   ];
 
   int _selectPageIndex = 0;
-
 
   void _selectPage(int index) {
     setState(() {
@@ -42,9 +41,9 @@ class _TabsScreenState extends State<TabsScreen> {
     // TODO: implement build
     return Scaffold(
       appBar: AppBar(
-        title: Text('Deli Dart'),
+        title: Text(_pages[_selectPageIndex]['title'], style: Theme.of(context).textTheme.headline6),
       ),
-      body: _pages[_selectPageIndex],
+      body: _pages[_selectPageIndex]['page'],
       bottomNavigationBar: BottomNavigationBar(
         unselectedItemColor: Colors.white,
         selectedItemColor: Colors.redAccent,
@@ -53,8 +52,7 @@ class _TabsScreenState extends State<TabsScreen> {
         items: [
           BottomNavigationBarItem(
               icon: Icon(Icons.category), label: 'Categories'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.star), label: 'Favorites')
+          BottomNavigationBarItem(icon: Icon(Icons.star), label: 'Favorites')
         ],
       ),
     );
