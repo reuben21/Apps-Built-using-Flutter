@@ -42,7 +42,7 @@ class _TabsScreenState extends State<TabsScreen> {
     // TODO: implement build
     return Scaffold(
       appBar: AppBar(
-        title: Text(_pages[_selectPageIndex]['title'], style: Theme.of(context).textTheme.headline6),
+        title: Text(_pages[_selectPageIndex]['title'], style: Theme.of(context).textTheme.headline4),
       ),
       drawer:MainDrawer(),
       body: _pages[_selectPageIndex]['page'],
