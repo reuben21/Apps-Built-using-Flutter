@@ -14,6 +14,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Meals App',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
           primaryColor: Colors.black,
           accentColor: Colors.blueAccent,

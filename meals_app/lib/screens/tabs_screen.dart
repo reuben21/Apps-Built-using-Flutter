@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../widgets/main_drawer.dart';
 import './favorites_screen.dart';
 
 import './categories_screen.dart';
@@ -24,7 +25,7 @@ class _TabsScreenState extends State<TabsScreen> {
   }
 
   final List<Map<String, Object>> _pages = [
-    {'page': CategoriesScreen(), 'title': 'Deli Dart Categories'},
+    {'page': CategoriesScreen(), 'title': 'Categories'},
     {'page': FavoritesScreen(), 'title': 'Your Favourites'}
   ];
 
@@ -43,6 +44,7 @@ class _TabsScreenState extends State<TabsScreen> {
       appBar: AppBar(
         title: Text(_pages[_selectPageIndex]['title'], style: Theme.of(context).textTheme.headline6),
       ),
+      drawer:MainDrawer(),
       body: _pages[_selectPageIndex]['page'],
       bottomNavigationBar: BottomNavigationBar(
         unselectedItemColor: Colors.white,
