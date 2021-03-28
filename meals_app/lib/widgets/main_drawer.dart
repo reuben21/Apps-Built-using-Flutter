@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import '../screens/filters_screen.dart';
 
 class MainDrawer extends StatelessWidget {
   MainDrawer({Key key}) : super(key: key);
@@ -26,7 +27,7 @@ class MainDrawer extends StatelessWidget {
       child: Column(
         children: <Widget>[
           Container(
-            height: 120,
+            height: 150,
             width: double.infinity,
             padding: EdgeInsets.all(20),
             alignment: Alignment.centerLeft,
@@ -42,11 +43,15 @@ class MainDrawer extends StatelessWidget {
           SizedBox(
             height: 20,
           ),
-          buildListTile('Meals', Icons.restaurant,null),
+          buildListTile('Meals', Icons.restaurant,(){
+            Navigator.of(context).pushReplacementNamed("/");
+          }),
           SizedBox(
             height: 20,
           ),
-          buildListTile('Filters', Icons.settings,null)
+          buildListTile('Filters', Icons.settings,(){
+            Navigator.of(context).pushReplacementNamed(FilterScreen.routeName);
+          })
         ],
       ),
     );
