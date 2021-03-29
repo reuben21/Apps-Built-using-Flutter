@@ -3,7 +3,7 @@
 <table style="border:1px solid black">
     <tbody>
         <tr>
-            <td colspan="3"><div align="center"><h2>Apps Made By me with ❤️</h2></div></td>
+            <td colspan="3"><div align="center"><h2>Apps Made By Me with ❤️</h2></div></td>
         </tr>
     <tr>
         <td style="text-align:center"><div align="center"><h2>Quizzie - A Quiz App </h2> <img src="https://media.giphy.com/media/Iul2e7IuPlbhEsC1YZ/giphy.gif" /></div></td>
