@@ -8,7 +8,7 @@
     <tr>
         <td style="text-align:center"><div align="center"><h2>Quizzie - A Quiz App </h2> <img src="https://media.giphy.com/media/8dECHQExOShdD3gyFe/giphy.gif" /></div></td>
         <td style="text-align:center"><div align="center"><h2>Personal Expense Tracker</h2> <img src="https://media.giphy.com/media/2xcsDEa6LLR8Pvpl3d/giphy.gif" /></div></td>
-        <td style="text-align:center"><div align="center"><h2>BMI Calculator</h2> <img src=""/></div></td>
+        <td style="text-align:center"><div align="center"><h2>Deli Dart- A Meal App</h2> <img src="https://media.giphy.com/media/rf8j2qH1DyOhBjY35L/giphy.gif"/></div></td>
     </tr>
     </tbody>
 </table>
