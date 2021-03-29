@@ -6,9 +6,9 @@
             <td colspan="3"><div align="center"><h2>Apps Made By Me with ❤️</h2></div></td>
         </tr>
     <tr>
-        <td style="text-align:center"><div align="center"><h2>Quizzie - A Quiz App </h2> <img src="https://media.giphy.com/media/ppPeH0WJRacNLu0Wcp/giphy.gif" /></div></td>
-        <td style="text-align:center"><div align="center"><h2>Personal Expense Tracker</h2> <img src="https://github.com/reuben21/Apps-Built-with-Flutter/blob/main/expense_tracker_app/assets/image/Image1.png" width="60%"/></div></td>
-        <td style="text-align:center"><div align="center"><h2>BMI Calculator</h2> <img src="https://media.giphy.com/media/j2AekBZ4llkALbFwqz/giphy.gif"/></div></td>
+        <td style="text-align:center"><div align="center"><h2>Quizzie - A Quiz App </h2> <img src="https://media.giphy.com/media/8dECHQExOShdD3gyFe/giphy.gif" /></div></td>
+        <td style="text-align:center"><div align="center"><h2>Expense Tracker</h2> <img src="https://media.giphy.com/media/2xcsDEa6LLR8Pvpl3d/giphy.gif" /></div></td>
+        <td style="text-align:center"><div align="center"><h2>Deli Dart- A Meal App</h2> <img src="https://media.giphy.com/media/rf8j2qH1DyOhBjY35L/giphy.gif"/></div></td>
     </tr>
     </tbody>
 </table>
