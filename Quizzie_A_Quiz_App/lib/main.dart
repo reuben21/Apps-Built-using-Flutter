@@ -31,30 +31,30 @@ class _MyAppState extends State<MyApp> {
       ]
     },
     {
-      'questionText': "What's your Favourite Animal?",
+      'questionText': "What's your Favourite Shape?",
+      'answers': [
+        {'text': 'Square', 'score': 10},
+        {'text': 'Triangle', 'score': 17},
+        {'text': 'Rectangle', 'score': 18},
+        {'text': 'Circle', 'score': 15}
+      ]
+    },
+    {
+      'questionText': "What's your Favourite Being?",
       'answers': [
         {'text': 'Dog', 'score': 10},
-        {'text': 'Cat', 'score': 7},
-        {'text': 'Lion', 'score': 8},
-        {'text': 'Rufus', 'score': 5}
+        {'text': 'Cats', 'score': 7},
+        {'text': 'Puppies', 'score': 8},
+        {'text': 'All Of The', 'score': 15}
       ]
     },
     {
       'questionText': "What's your Favourite Phone?",
       'answers': [
-        {'text': 'S10', 'score': 10},
-        {'text': 'S9', 'score': 7},
-        {'text': 'S8', 'score': 8},
-        {'text': 'S6', 'score': 5}
-      ]
-    },
-    {
-      'questionText': "What's your Favourite Phone?",
-      'answers': [
-        {'text': 'S10', 'score': 10},
-        {'text': 'S9', 'score': 7},
-        {'text': 'S8', 'score': 8},
-        {'text': 'S6', 'score': 5}
+        {'text': 'Phone A', 'score': 10},
+        {'text': 'Phone B', 'score': 7},
+        {'text': 'Phone C', 'score': 8},
+        {'text': 'Phone D', 'score': 5}
       ]
     },
   ];
