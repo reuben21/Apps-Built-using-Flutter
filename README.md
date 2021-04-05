@@ -7,7 +7,7 @@
         </tr>
     <tr>
         <td style="text-align:center"><div align="center"><h2>Quizzie - A Quiz App </h2> <img src="https://github.com/reuben21/Apps-Built-with-Kotlin/blob/main/Assets/AgeInMinutes.png?raw=true" width="60%" /></div></td>
-     
-    </tr>
-    </tbody>
+        </tr>
+ 
+</tbody>
 </table>
