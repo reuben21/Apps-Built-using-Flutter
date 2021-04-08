@@ -43,7 +43,7 @@ class ProductsOverviewScreen extends StatelessWidget {
     // TODO: implement build
     return Scaffold(
       appBar: AppBar(
-        title: Text('Shopify', style: Theme.of(context).textTheme.headline1),
+        title: Text('You Shop', style: Theme.of(context).textTheme.headline1),
       ),
       body: GridView.builder(padding: const EdgeInsets.all(10.0),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
