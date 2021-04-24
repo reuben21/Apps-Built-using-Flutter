@@ -47,23 +47,23 @@ class MyApp extends StatelessWidget {
                 fontFamily: 'PlayfairDisplay',
               ),
               headline5: TextStyle(
-                color: Colors.deepOrangeAccent,
-                fontSize: 20,
+                color: kSecondaryColor[100],
+                fontSize: 12,
                 fontFamily: 'PlayfairDisplay',
               ),
               headline4: TextStyle(
-                color: Colors.white,
-                fontSize: 20,
+                color: kSecondaryColor[100],
+                fontSize: 14,
                 fontFamily: 'PlayfairDisplay',
               ),
               headline3: TextStyle(
-                color: Colors.redAccent,
-                fontSize: 15,
+                color: kSecondaryColor[100],
+                fontSize: 16,
                 fontFamily: 'PlayfairDisplay',
               ),
               headline2: TextStyle(
-                color: Colors.white,
-                fontSize: 14,
+                color: kSecondaryColor[100],
+                fontSize: 18,
                 fontFamily: 'PlayfairDisplay',
               ),
               headline1: TextStyle(
