@@ -34,15 +34,19 @@ class ProductItem extends StatelessWidget {
             color: kPrimaryColorAccent[100],
             child: Row(children: <Widget>[
               Expanded(
-                child: IconButton(
-                  icon: Icon(
-                    product.isFavorite ? Icons.favorite : Icons.favorite_border,
-                    color: kSecondaryColor[100],
-                    size: 18,
+                child: Consumer<Product>(
+                  builder: (ctx, product, _) => IconButton(
+                    icon: Icon(
+                      product.isFavorite
+                          ? Icons.favorite
+                          : Icons.favorite_border,
+                      color: kSecondaryColor[100],
+                      size: 18,
+                    ),
+                    onPressed: () {
+                      product.toggleFavoriteStatus();
+                    },
                   ),
-                  onPressed: () {
-                    product.toggleFavoriteStatus();
-                  },
                 ),
               ),
               Expanded(
