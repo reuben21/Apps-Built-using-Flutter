@@ -22,6 +22,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (ctx) => Cart()),
       ],
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: '',
         theme: ThemeData(
           // This is the theme of your application.
