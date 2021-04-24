@@ -52,7 +52,7 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
                 value: FilterOptions.All,
               )
             ],
-            icon: Icon(Icons.more_vert),
+            icon: Icon(Icons.more_vert,color: kSecondaryColor[100],),
           )
         ],
       ),
