@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shop/colors.dart';
+import 'package:shop/providers/cart.dart';
 import 'package:shop/providers/products.dart';
+import 'package:shop/widgets/badge.dart';
 import '../widgets/product_grid.dart';
 import '../providers/product.dart';
 
@@ -38,7 +40,6 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
                   _showOnlyFavorites = false;
                 }
               });
-
             },
             itemBuilder: (_) => [
               PopupMenuItem(
@@ -52,7 +53,20 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
                 value: FilterOptions.All,
               )
             ],
-            icon: Icon(Icons.more_vert,color: kSecondaryColor[100],),
+            icon: Icon(
+              Icons.more_vert,
+              color: kSecondaryColor[100],
+            ),
+          ),
+          Consumer<Cart>(
+            builder: (_, cartData, ch) =>
+                Badge(child: ch, value: cartData.cartItemCount.toString()),
+            child: IconButton(
+                onPressed: (){},
+                icon: Icon(
+              Icons.shopping_cart,
+              color: kSecondaryColor[100],
+            )),
           )
         ],
       ),
