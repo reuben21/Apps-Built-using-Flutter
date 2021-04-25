@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:shop/colors.dart';
 import 'package:shop/providers/cart.dart';
 import 'package:shop/providers/products.dart';
+import 'package:shop/screens/cart_screen.dart';
 import 'package:shop/widgets/badge.dart';
 import '../widgets/product_grid.dart';
 import '../providers/product.dart';
@@ -62,7 +63,9 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
             builder: (_, cartData, ch) =>
                 Badge(child: ch, value: cartData.cartItemCount.toString()),
             child: IconButton(
-                onPressed: (){},
+                onPressed: (){
+                  Navigator.of(context).pushNamed(CartScreen.routeName);
+                },
                 icon: Icon(
               Icons.shopping_cart,
               color: kSecondaryColor[100],
