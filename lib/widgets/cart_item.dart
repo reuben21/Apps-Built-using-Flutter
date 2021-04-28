@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shop/colors.dart';
 
 class CartItem extends StatelessWidget {
   final String id;
@@ -11,14 +12,15 @@ class CartItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    print(quantity);
+
     return Card(
       margin: EdgeInsets.symmetric(horizontal: 15, vertical: 4),
       child: Padding(
         padding: EdgeInsets.all(8),
         child: ListTile(
           leading: CircleAvatar(
-            child: Text('\$ ${price}'),
+            backgroundColor: kPrimaryColor[100],
+            child: FittedBox(child: Text('\$ ${price}')),
           ),
           title: Text(title),
           subtitle: Text('Total: \$${(price*quantity)}'),
