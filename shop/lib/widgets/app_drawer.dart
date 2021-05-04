@@ -11,6 +11,7 @@ class AppDrawer extends StatelessWidget {
     // TODO: implement build
     return Drawer(
 
+
       child: Column(
 
         children: <Widget>[
@@ -22,7 +23,7 @@ class AppDrawer extends StatelessWidget {
             leading: Icon(Icons.shop),
             title:Text('Your Shop', style: Theme.of(context).textTheme.headline3),
             onTap: (){
-              Navigator.of(context).pushReplacementNamed(ProductDetailScreen.routeName);
+              Navigator.of(context).pushReplacementNamed("/");
             },
           ),
           ListTile(

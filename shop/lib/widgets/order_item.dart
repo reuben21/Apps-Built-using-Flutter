@@ -1,7 +1,11 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:shop/colors.dart';
 import 'package:shop/providers/orders.dart' as ord;
 import 'package:intl/intl.dart';
-class OrderItem extends StatelessWidget {
+import 'dart:math';
+
+class OrderItem extends StatefulWidget {
 
   final ord.OrderItem order;
 
@@ -9,18 +13,49 @@ class OrderItem extends StatelessWidget {
   OrderItem(this.order);
 
   @override
+  _OrderItemState createState() => _OrderItemState();
+}
+
+class _OrderItemState extends State<OrderItem> {
+
+  var _expanded = false;
+
+
+  @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return Card(margin: EdgeInsets.all(10),child: Column(
+    return Card(margin: EdgeInsets.all(10),color: kPrimaryColor[100], child: Column(
       children: <Widget>[
-        ListTile(title: Text('\$ ${order.amount}'),
-        subtitle: Text(DateFormat('dd MM yyyy hh:mm').format(order.dateTime)
-        ),
+        ListTile(title: Text('\$ ${widget.order.amount.toStringAsFixed(2)}',style: Theme.of(context).textTheme.headline3),
+          subtitle: Text(
+              DateFormat('dd/MM/yyyy hh:mm').format(widget.order.dateTime)
+              ,style: Theme.of(context).textTheme.headline4
+            ),
           trailing: IconButton(
-            icon: Icon(Icons.expand_more) ,
-            onPressed: (){},
+            icon: Icon(_expanded ? Icons.expand_less : Icons.expand_more,color: kSecondaryColor[100],),
+            onPressed: () {
+              setState(() {
+                _expanded = !_expanded;
+              });
+            },
           ),
-        )
+        ),
+        if(_expanded) Container(
+          decoration: BoxDecoration(
+              color: kPrimaryColorAccent[100],
+              borderRadius: BorderRadius.all(Radius.circular(5))
+          ),
+          padding: EdgeInsets.all(20),
+            height: min(widget.order.products.length * 20.0 + 50.0, 180.0),
+            child: ListView( children: widget.order.products.map((prod) => Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Text(prod.title ,style: Theme.of(context).textTheme.headline4),
+                Text('${prod.quantity}x \$ ${prod.price}',style: Theme.of(context).textTheme.headline4)
+              ],
+            )).toList()),
+          )
+
       ],
     ));
   }
