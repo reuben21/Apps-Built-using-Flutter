@@ -20,7 +20,7 @@ class Orders with ChangeNotifier {
   }
 
   void addOrder(List<CartItem> cartProducts, double total) {
-    print(cartProducts);
+
     _orders.insert(0, OrderItem(id: DateTime.now().toString(),
         amount: total,
         products: cartProducts,
