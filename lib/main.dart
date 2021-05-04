@@ -29,6 +29,8 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: '',
         theme: ThemeData(
+            primaryIconTheme: IconThemeData(color: kSecondaryColor[100]),
+
           // This is the theme of your application.
           //
           // Try running your application with "flutter run". You'll see the

@@ -75,6 +75,7 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
         ],
       ),
       drawer: AppDrawer(),
+      drawerScrimColor: kPrimaryColorAccent[100],
       body: ProductsGrid(_showOnlyFavorites),
     );
   }
