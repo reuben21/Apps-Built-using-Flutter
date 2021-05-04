@@ -40,7 +40,8 @@ class CartScreen extends StatelessWidget {
                       child: Text('ORDER NOW',
                           style: Theme.of(context).textTheme.headline2),
                       onPressed: () {
-                        Provider.of<Orders>(context).addOrder(cart.items.values, cart.totalAmount);
+
+                        Provider.of<Orders>(context,listen: false).addOrder(cart.items.values.toList(), cart.totalAmount);
                         cart.clear();
                         },
                     )
