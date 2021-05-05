@@ -1,4 +1,11 @@
-# shop
+<h1> You Shop - App Built with Flutter </h1>
+
+Packages used and learned about:
+<ol>
+<li> Provider Package </li>
+<li> Intl Package </li>
+</ol>
+
 
 A Shop Flutter project.
 
