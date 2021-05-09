@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shop/colors.dart';
 import 'package:shop/providers/products.dart';
+import 'package:shop/screens/edit_product_screen.dart';
 import 'package:shop/widgets/app_drawer.dart';
 import 'package:shop/widgets/user_product_item.dart';
 
@@ -18,9 +19,11 @@ class UserProductScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('You Shop', style: Theme.of(context).textTheme.headline1),
+        title: Text('Your Products', style: Theme.of(context).textTheme.headline1),
         actions: <Widget>[
-          IconButton(icon: const Icon(Icons.add), onPressed: () {})
+          IconButton(icon: const Icon(Icons.add), onPressed: () {
+            Navigator.of(context).pushNamed(EditProductScreen.routeName);
+          })
         ],
       ),
       drawer: AppDrawer(),
