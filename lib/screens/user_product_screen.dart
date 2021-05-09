@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shop/colors.dart';
 import 'package:shop/providers/products.dart';
+import 'package:shop/widgets/app_drawer.dart';
 import 'package:shop/widgets/user_product_item.dart';
 
 class UserProductScreen extends StatelessWidget {
@@ -21,12 +23,16 @@ class UserProductScreen extends StatelessWidget {
           IconButton(icon: const Icon(Icons.add), onPressed: () {})
         ],
       ),
-      body: Padding(
-        padding: EdgeInsets.all(8),
-        child: ListView.builder(
-          itemBuilder: (_, i) => UserProductItem(
-              productsData.items[i].title, productsData.items[i].imageUrl),
-          itemCount: productsData.items.length,
+      drawer: AppDrawer(),
+      body: Container(
+        color: kPrimaryColorAccent[100],
+        child: Padding(
+          padding: EdgeInsets.all(8),
+          child: ListView.builder(
+            itemBuilder: (_, i) => UserProductItem(
+                productsData.items[i].title, productsData.items[i].imageUrl),
+            itemCount: productsData.items.length,
+          ),
         ),
       ),
     );
