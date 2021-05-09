@@ -11,14 +11,18 @@ class UserProductItem extends StatelessWidget {
   Widget build(BuildContext context) {
     // TODO: implement build
     return ListTile(
-      title: Text(title),
+
+      title: Text(title, style: Theme.of(context).textTheme.headline2),
       leading: CircleAvatar(
         backgroundImage: NetworkImage(imageUrl),
         ),
-      trailing: Row(children: <Widget>[
-        IconButton(icon: Icon(Icons.edit), onPressed: (){},color: kSecondaryColor[100],),
-        IconButton(icon: Icon(Icons.delete), onPressed: (){},color: kSecondaryColor[100],),
-      ],),
+      trailing: Container(
+        width: 100,
+        child: Row(children: <Widget>[
+          IconButton(icon: Icon(Icons.edit), onPressed: (){},color: kSecondaryColor[100],),
+          IconButton(icon: Icon(Icons.delete), onPressed: (){},color: kSecondaryColor[100],),
+        ],),
+      ),
     );
   }
 }
