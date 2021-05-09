@@ -33,7 +33,7 @@ class ProductItem extends StatelessWidget {
             ),
           ),
           footer: Container(
-            color: kPrimaryColorAccent[100],
+            color: kPrimaryColor[100],
             child: Row(children: <Widget>[
               Expanded(
                 child: Consumer<Product>(
