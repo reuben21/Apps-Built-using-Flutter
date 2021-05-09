@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shop/providers/orders.dart';
 import 'package:shop/screens/orders_screen.dart';
 import 'package:shop/screens/product_detail_screen.dart';
+import 'package:shop/screens/user_product_screen.dart';
 
 class AppDrawer extends StatelessWidget {
   AppDrawer({Key key}) : super(key: key);
@@ -32,7 +33,15 @@ class AppDrawer extends StatelessWidget {
             onTap: (){
               Navigator.of(context).pushReplacementNamed(OrdersScreen.routeName);
             },
-          )
+          ),
+          Divider(),
+          ListTile(
+            leading: Icon(Icons.edit),
+            title:Text('Manage Products', style: Theme.of(context).textTheme.headline3),
+            onTap: (){
+              Navigator.of(context).pushReplacementNamed(UserProductScreen.routeName);
+            },
+          ),
 
 
 
