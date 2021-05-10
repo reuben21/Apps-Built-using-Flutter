@@ -8,7 +8,7 @@ Packages used and learned about:
 
 <ol>
 <li> Working with Forms and Controller </li>
-<li> Intl Package </li>
+<li> Working with Drawers </li>
 </ol>
 
 
