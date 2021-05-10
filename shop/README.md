@@ -6,10 +6,10 @@ Packages used and learned about:
 <li> Intl Package </li>
 </ol>
 
-<ol>
+<ul>
 <li> Working with Forms and Controller </li>
 <li> Working with Drawers </li>
-</ol>
+</ul>
 
 
 A Shop Flutter project.
