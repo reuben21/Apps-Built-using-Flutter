@@ -15,6 +15,7 @@ class EditProductScreen extends StatefulWidget {
 class _EditProductScreenState extends State<EditProductScreen> {
   final _priceForNode = FocusNode();
   final _descriptionForNode = FocusNode();
+  final _imageUrlController = TextEditingController();
 
   @override
   void initState() {
@@ -66,6 +67,27 @@ class _EditProductScreenState extends State<EditProductScreen> {
                 keyboardType: TextInputType.multiline,
                 textInputAction: TextInputAction.next,
 
+              ),
+              Row(
+                children: [
+                  Container(
+                    width: 100,
+                    height: 100,
+                    margin: EdgeInsets.only(top:8,right: 10),
+                    child: _imageUrlController.text.isEmpty ? Text("Enter A URL"): FittedBox(child: Image.network(_imageUrlController.text),),
+                  ),
+                  Expanded(
+                      child: TextFormField(
+                        decoration: InputDecoration(labelText: 'Image URL'),
+                        keyboardType: TextInputType.url,
+                        textInputAction: TextInputAction.done,
+                        controller: _imageUrlController,
+                        onEditingComplete: () {
+                          setState(() {});
+                        },
+                      )
+                  ),
+                ],
               ),
             ],
           ),
