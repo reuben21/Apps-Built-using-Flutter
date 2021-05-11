@@ -1,4 +1,4 @@
-<h1> You Shop - App Built with Flutter </h1>
+<h1> You Shop - A Shop Flutter project. </h1>
 
 Packages used and learned about:
 <ol>
@@ -6,8 +6,13 @@ Packages used and learned about:
 <li> Intl Package </li>
 </ol>
 
+<ul>
+<li> Working with Forms and Controller </li>
+<li> Working with Drawers </li>
+</ul>
 
-A Shop Flutter project.
+
+
 
 ## Getting Started
 
