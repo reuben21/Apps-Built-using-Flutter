@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:shop/colors.dart';
 
 class EditProductScreen extends StatefulWidget {
-
   static const routeName = '/edit-product';
 
   EditProductScreen({Key key}) : super(key: key);
@@ -24,6 +23,8 @@ class _EditProductScreenState extends State<EditProductScreen> {
     super.dispose();
   }
 
+  final _priceForNode = FocusNode();
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -40,6 +41,16 @@ class _EditProductScreenState extends State<EditProductScreen> {
                 decoration: InputDecoration(
                     labelText: 'Title', focusColor: kPrimaryColor[100]),
                 textInputAction: TextInputAction.next,
+                onFieldSubmitted: (_) {
+                  FocusScope.of(context).requestFocus(_priceForNode);
+                },
+              ),
+              TextFormField(
+                decoration: InputDecoration(
+                    labelText: 'Price', focusColor: kPrimaryColor[100]),
+                textInputAction: TextInputAction.next,
+                keyboardType: TextInputType.number,
+                focusNode: _priceForNode,
               ),
             ],
           ),
