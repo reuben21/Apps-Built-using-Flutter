@@ -48,13 +48,17 @@ class _EditProductScreenState extends State<EditProductScreen> {
   }
 
   void _saveForm() {
+    final isValid = _form.currentState.validate();
+    if (!isValid) {
+      return;
+    }
+
     _form.currentState.save();
     print(_editedProduct.title);
     print(_editedProduct.description);
     print(_editedProduct.price);
     print(_editedProduct.imageUrl);
     // print(_editedProduct.title);
-
   }
 
   @override
@@ -82,6 +86,12 @@ class _EditProductScreenState extends State<EditProductScreen> {
                 onFieldSubmitted: (_) {
                   FocusScope.of(context).requestFocus(_priceForNode);
                 },
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return "Please Enter A Title";
+                  }
+                  return null;
+                },
                 onSaved: (value) {
                   _editedProduct = Product(
                       title: value,
@@ -99,6 +109,18 @@ class _EditProductScreenState extends State<EditProductScreen> {
                 focusNode: _priceForNode,
                 onFieldSubmitted: (_) {
                   FocusScope.of(context).requestFocus(_descriptionForNode);
+                },
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return "Please Enter A Price";
+                  }
+                  if (double.tryParse(value) == null) {
+                    return 'Please Enter A Valid Number';
+                  }
+                  if (double.parse(value) <= 0) {
+                    return 'Please Enter A Price Greater than 0';
+                  }
+                  return null;
                 },
                 onSaved: (value) {
                   _editedProduct = Product(
@@ -123,8 +145,16 @@ class _EditProductScreenState extends State<EditProductScreen> {
                       imageUrl: _editedProduct.imageUrl,
                       id: null);
                 },
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return "Please Enter A Description.";
+                  }
+                  if (value.length < 10) {
+                    return 'Should be at least 10 Characters long';
+                  }
+                  return null;
+                },
               ),
-
               Row(
                 children: [
                   Container(
@@ -139,6 +169,15 @@ class _EditProductScreenState extends State<EditProductScreen> {
                   ),
                   Expanded(
                       child: TextFormField(
+                    validator: (value) {
+                      if (value.isEmpty) {
+                        return "Please Enter An Image URL.";
+                      }
+                      if (!value.startsWith('http') && !value.startsWith('https')) {
+                        return 'Please Enter a Valid URL';
+                      }
+                      return null;
+                    },
                     decoration: InputDecoration(labelText: 'Image URL'),
                     keyboardType: TextInputType.url,
                     textInputAction: TextInputAction.done,
@@ -150,14 +189,14 @@ class _EditProductScreenState extends State<EditProductScreen> {
                     onFieldSubmitted: (_) {
                       _saveForm();
                     },
-                        onSaved: (value) {
-                          _editedProduct = Product(
-                              title: _editedProduct.title,
-                              price: _editedProduct.price,
-                              description: _editedProduct.description,
-                              imageUrl: value,
-                              id: null);
-                        },
+                    onSaved: (value) {
+                      _editedProduct = Product(
+                          title: _editedProduct.title,
+                          price: _editedProduct.price,
+                          description: _editedProduct.description,
+                          imageUrl: value,
+                          id: null);
+                    },
                   )),
                 ],
               ),
