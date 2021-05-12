@@ -22,14 +22,52 @@ class _EditProductScreenState extends State<EditProductScreen> {
   final _imageUrlController = TextEditingController();
   final _form = GlobalKey<FormState>();
   var _editedProduct =
-      Product(id: null, title: '', price: 0, description: '', imageUrl: '');
+  Product(id: null,
+      title: '',
+      price: 0,
+      description: '',
+      imageUrl: '');
+  var _initValues = {
+    'title': '',
+    'description': '',
+    'price': '',
+    'imageUrl': '',
+  };
+  var _isInit = true;
 
   @override
   void initState() {
     _imageUrlForNode.addListener(() {
       _updateImageUrl();
     });
+
     super.initState();
+  }
+
+  @override
+  void didChangeDependencies() {
+    // TODO: implement didChangeDependencies
+
+    if (_isInit) {
+      final productId = ModalRoute
+          .of(context)
+          .settings
+          .arguments as String;
+      if (productId != null) {
+        _editedProduct =
+            Provider.of<Products>(context, listen: false).findById(productId);
+        _initValues = {
+          'title': _editedProduct.title,
+          'description': _editedProduct.description,
+          'price': _editedProduct.price.toString(),
+          'imageUrl': '',
+
+        };
+        _imageUrlController.text = _editedProduct.imageUrl;
+      }
+    }
+    _isInit = false;
+    super.didChangeDependencies();
   }
 
   @override
@@ -56,11 +94,17 @@ class _EditProductScreenState extends State<EditProductScreen> {
     }
 
     _form.currentState.save();
+    if(_editedProduct.id !=null ) {
+      Provider.of<Products>(context, listen: false).updatedProduct(_editedProduct.id,_editedProduct);
+
+    }else {
+      Provider.of<Products>(context, listen: false).addProduct(_editedProduct);
+
+    }
     print(_editedProduct.title);
     print(_editedProduct.description);
     print(_editedProduct.price);
     print(_editedProduct.imageUrl);
-    Provider.of<Products>(context, listen: false).addProduct(_editedProduct);
   }
 
   @override
@@ -68,7 +112,10 @@ class _EditProductScreenState extends State<EditProductScreen> {
     // TODO: implement build
     return Scaffold(
       appBar: AppBar(
-          title: Text('You Shop', style: Theme.of(context).textTheme.headline1),
+          title: Text('You Shop', style: Theme
+              .of(context)
+              .textTheme
+              .headline1),
           actions: <Widget>[
             IconButton(
               icon: Icon(Icons.save),
@@ -82,6 +129,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
           child: ListView(
             children: <Widget>[
               TextFormField(
+                initialValue: _initValues['title'],
                 decoration: InputDecoration(
                     labelText: 'Title', focusColor: kPrimaryColor[100]),
                 textInputAction: TextInputAction.next,
@@ -100,10 +148,13 @@ class _EditProductScreenState extends State<EditProductScreen> {
                       price: _editedProduct.price,
                       description: _editedProduct.description,
                       imageUrl: _editedProduct.imageUrl,
-                      id: null);
+                      id: _editedProduct.id,
+                      isFavorite: _editedProduct.isFavorite
+                  );
                 },
               ),
               TextFormField(
+                initialValue: _initValues['price'],
                 decoration: InputDecoration(
                     labelText: 'Price', focusColor: kPrimaryColor[100]),
                 textInputAction: TextInputAction.next,
@@ -130,10 +181,12 @@ class _EditProductScreenState extends State<EditProductScreen> {
                       price: double.parse(value),
                       description: _editedProduct.description,
                       imageUrl: _editedProduct.imageUrl,
-                      id: null);
+                      id: _editedProduct.id,
+                      isFavorite: _editedProduct.isFavorite);
                 },
               ),
               TextFormField(
+                initialValue: _initValues['description'],
                 decoration: InputDecoration(
                     labelText: 'Description', focusColor: kPrimaryColor[100]),
                 maxLines: 3,
@@ -145,7 +198,8 @@ class _EditProductScreenState extends State<EditProductScreen> {
                       price: _editedProduct.price,
                       description: value,
                       imageUrl: _editedProduct.imageUrl,
-                      id: null);
+                      id: _editedProduct.id,
+                      isFavorite: _editedProduct.isFavorite);
                 },
                 validator: (value) {
                   if (value.isEmpty) {
@@ -166,41 +220,43 @@ class _EditProductScreenState extends State<EditProductScreen> {
                     child: _imageUrlController.text.isEmpty
                         ? Text("Enter A URL")
                         : FittedBox(
-                            child: Image.network(_imageUrlController.text),
-                          ),
+                      child: Image.network(_imageUrlController.text),
+                    ),
                   ),
                   Expanded(
                       child: TextFormField(
-                    validator: (value) {
-                      if (value.isEmpty) {
-                        return "Please Enter An Image URL.";
-                      }
-                      if (!value.startsWith('http') &&
-                          !value.startsWith('https')) {
-                        return 'Please Enter a Valid URL';
-                      }
-                      return null;
-                    },
-                    decoration: InputDecoration(labelText: 'Image URL'),
-                    keyboardType: TextInputType.url,
-                    textInputAction: TextInputAction.done,
-                    controller: _imageUrlController,
-                    focusNode: _imageUrlForNode,
-                    onEditingComplete: () {
-                      setState(() {});
-                    },
-                    onFieldSubmitted: (_) {
-                      _saveForm();
-                    },
-                    onSaved: (value) {
-                      _editedProduct = Product(
-                          title: _editedProduct.title,
-                          price: _editedProduct.price,
-                          description: _editedProduct.description,
-                          imageUrl: value,
-                          id: null);
-                    },
-                  )),
+
+                        validator: (value) {
+                          if (value.isEmpty) {
+                            return "Please Enter An Image URL.";
+                          }
+                          if (!value.startsWith('http') &&
+                              !value.startsWith('https')) {
+                            return 'Please Enter a Valid URL';
+                          }
+                          return null;
+                        },
+                        decoration: InputDecoration(labelText: 'Image URL'),
+                        keyboardType: TextInputType.url,
+                        textInputAction: TextInputAction.done,
+                        controller: _imageUrlController,
+                        focusNode: _imageUrlForNode,
+                        onEditingComplete: () {
+                          setState(() {});
+                        },
+                        onFieldSubmitted: (_) {
+                          _saveForm();
+                        },
+                        onSaved: (value) {
+                          _editedProduct = Product(
+                              title: _editedProduct.title,
+                              price: _editedProduct.price,
+                              description: _editedProduct.description,
+                              imageUrl: value,
+                              id: _editedProduct.id,
+                              isFavorite: _editedProduct.isFavorite);
+                        },
+                      )),
                 ],
               ),
             ],
