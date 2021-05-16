@@ -105,6 +105,8 @@ class _EditProductScreenState extends State<EditProductScreen> {
     print(_editedProduct.description);
     print(_editedProduct.price);
     print(_editedProduct.imageUrl);
+
+    Navigator.of(context).pop();
   }
 
   @override
