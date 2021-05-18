@@ -1,29 +1,10 @@
 import 'dart:convert';
-
 import 'package:flutter/cupertino.dart';
 import 'product.dart';
 import 'package:http/http.dart' as http;
 
 class Products with ChangeNotifier {
-  List<Product> _items = [
-
-    Product(
-      id: 'p2',
-      title: 'Trousers',
-      description: 'A nice pair of trousers.',
-      price: 59.99,
-      imageUrl:
-          'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Trousers%2C_dress_%28AM_1960.022-8%29.jpg/512px-Trousers%2C_dress_%28AM_1960.022-8%29.jpg',
-    ),
-    Product(
-      id: 'p4',
-      title: 'A Pan',
-      description: 'Prepare any meal you want.',
-      price: 49.99,
-      imageUrl:
-          'https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Cast-Iron-Pan.jpg/1024px-Cast-Iron-Pan.jpg',
-    ),
-  ];
+  List<Product> _items = [];
 
   List<Product> get items {
     return [..._items];
@@ -52,7 +33,13 @@ class Products with ChangeNotifier {
         "https://shopping-flutter-app-default-rtdb.asia-southeast1.firebasedatabase.app/products.json");
     try {
     final response = await http.get(url);
-    print(json.decode(response.body));
+    final extractedData = json.decode(response.body) as Map<String,dynamic>;
+    final List<Product> loadedProducts = [];
+    extractedData.forEach((prodId, prodData) {
+      loadedProducts.add(Product(id: prodId, title: prodData['title'], description: prodData['description'], price:prodData['price'], imageUrl: prodData['imageUrl'],isFavorite: prodData['isFavorite']));
+    });
+    _items = loadedProducts;
+    notifyListeners();
     } catch(error) {
 
     }
