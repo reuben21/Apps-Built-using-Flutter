@@ -75,16 +75,19 @@ class Products with ChangeNotifier {
               "isFavorite": product.isFavorite
             }))
         .then((response) {
-      var responseData = json.decode(response.body);
+      var _responseData = json.decode(response.body);
       final newProduct = Product(
           title: product.title,
           description: product.description,
           price: product.price,
           imageUrl: product.imageUrl,
-          id: responseData['name']);
+          id: _responseData['name']);
       _items.add(newProduct);
       notifyListeners();
 
+    }).catchError((error){
+      print(error);
+      throw error;
     });
   }
 
