@@ -77,10 +77,20 @@ class Products with ChangeNotifier {
 
   }
 
-  void updatedProduct(String id, Product newProduct) {
+  Future<void> updatedProduct(String id, Product newProduct) async {
     final prodIndex = _items.indexWhere((prod) => prod.id == id);
     if (prodIndex >= 0) {
-      _items[prodIndex] = newProduct;
+      final url = Uri.parse(
+          "https://shopping-flutter-app-default-rtdb.asia-southeast1.firebasedatabase.app/products/$id.json");
+
+      await http.patch(url,body: json.encode({
+        "title": newProduct.title,
+        "description": newProduct.description,
+        "price": newProduct.price,
+        "imageUrl": newProduct.imageUrl,
+        "isFavorite": newProduct.isFavorite
+      }));
+     _items[prodIndex] = newProduct;
     } else {
       print(".....");
     }
@@ -88,7 +98,24 @@ class Products with ChangeNotifier {
   }
 
   void deleteProduct(String id) {
-    _items.removeWhere((prod) => prod.id == id);
+    final url = Uri.parse(
+        "https://shopping-flutter-app-default-rtdb.asia-southeast1.firebasedatabase.app/products/$id.json");
+
+    final existingProductIndex = _items.indexWhere((prod) => prod.id == id);
+    var existingProduct = _items[existingProductIndex];
+
+    _items.removeAt(existingProductIndex);
+
+    http.delete(url).then((_){
+
+      existingProduct = null;
+
+    }).catchError((_){
+
+      _items.insert(existingProductIndex, existingProduct);
+
+    });
+
     notifyListeners();
   }
 }
