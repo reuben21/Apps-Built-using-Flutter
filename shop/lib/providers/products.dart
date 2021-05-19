@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/cupertino.dart';
+import 'package:shop/models/http_exception.dart';
 import 'product.dart';
 import 'package:http/http.dart' as http;
 
@@ -32,18 +33,21 @@ class Products with ChangeNotifier {
     var url = Uri.parse(
         "https://shopping-flutter-app-default-rtdb.asia-southeast1.firebasedatabase.app/products.json");
     try {
-    final response = await http.get(url);
-    final extractedData = json.decode(response.body) as Map<String,dynamic>;
-    final List<Product> loadedProducts = [];
-    extractedData.forEach((prodId, prodData) {
-      loadedProducts.add(Product(id: prodId, title: prodData['title'], description: prodData['description'], price:prodData['price'], imageUrl: prodData['imageUrl'],isFavorite: prodData['isFavorite']));
-    });
-    _items = loadedProducts;
-    notifyListeners();
-    } catch(error) {
-
-    }
-
+      final response = await http.get(url);
+      final extractedData = json.decode(response.body) as Map<String, dynamic>;
+      final List<Product> loadedProducts = [];
+      extractedData.forEach((prodId, prodData) {
+        loadedProducts.add(Product(
+            id: prodId,
+            title: prodData['title'],
+            description: prodData['description'],
+            price: prodData['price'],
+            imageUrl: prodData['imageUrl'],
+            isFavorite: prodData['isFavorite']));
+      });
+      _items = loadedProducts;
+      notifyListeners();
+    } catch (error) {}
   }
 
   Future<void> addProduct(Product product) async {
@@ -67,14 +71,10 @@ class Products with ChangeNotifier {
           id: _responseData['name']);
       _items.add(newProduct);
       notifyListeners();
-
     } catch (error) {
       print(error);
       throw error;
     }
-
-
-
   }
 
   Future<void> updatedProduct(String id, Product newProduct) async {
@@ -83,21 +83,22 @@ class Products with ChangeNotifier {
       final url = Uri.parse(
           "https://shopping-flutter-app-default-rtdb.asia-southeast1.firebasedatabase.app/products/$id.json");
 
-      await http.patch(url,body: json.encode({
-        "title": newProduct.title,
-        "description": newProduct.description,
-        "price": newProduct.price,
-        "imageUrl": newProduct.imageUrl,
-        "isFavorite": newProduct.isFavorite
-      }));
-     _items[prodIndex] = newProduct;
+      await http.patch(url,
+          body: json.encode({
+            "title": newProduct.title,
+            "description": newProduct.description,
+            "price": newProduct.price,
+            "imageUrl": newProduct.imageUrl,
+            "isFavorite": newProduct.isFavorite
+          }));
+      _items[prodIndex] = newProduct;
     } else {
       print(".....");
     }
     notifyListeners();
   }
 
-  void deleteProduct(String id) {
+  void deleteProduct(String id) async {
     final url = Uri.parse(
         "https://shopping-flutter-app-default-rtdb.asia-southeast1.firebasedatabase.app/products/$id.json");
 
@@ -105,17 +106,23 @@ class Products with ChangeNotifier {
     var existingProduct = _items[existingProductIndex];
 
     _items.removeAt(existingProductIndex);
+    notifyListeners();
 
-    http.delete(url).then((_){
-
-      existingProduct = null;
-
-    }).catchError((_){
+    final response = await http.delete(url);
+    if (response.statusCode >= 400) {
 
       _items.insert(existingProductIndex, existingProduct);
+      notifyListeners();
+      throw HttpException('Could not Delete Product.');
 
-    });
+    }
+      existingProduct = null;
 
-    notifyListeners();
+
+
+
+    // _items.insert(existingProductIndex, existingProduct);
+
+
   }
 }
