@@ -34,7 +34,19 @@ class UserProductItem extends StatelessWidget {
               Navigator.of(context).pushNamed(EditProductScreen.routeName,arguments: id);
             },color: kSecondaryColor[100],),
             IconButton(icon: Icon(Icons.delete), onPressed: (){
-              Provider.of<Products>(context, listen: false).deleteProduct(id);
+              try {
+                Provider.of<Products>(context, listen: false).deleteProduct(id);
+
+              }catch (error) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                      content: Text('Deleting the  Product Failed',
+                          style: Theme.of(context).textTheme.headline4),
+                      duration: Duration(seconds: 2),
+                  ),
+                );
+              }
+
             },color: kSecondaryColor[100],),
           ],),
         ),
