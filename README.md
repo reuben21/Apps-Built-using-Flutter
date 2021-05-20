@@ -4,11 +4,13 @@ Packages used and learned about:
 <ol>
 <li> Provider Package </li>
 <li> Intl Package </li>
+<li> HTTP Package </li>
 </ol>
 
 <ul>
 <li> Working with Forms and Controller </li>
-<li> Working with Drawers </li>
+<li> Working with User Input & Forms </li>
+<li> Sending Http Requests </li>
 </ul>
 
 
