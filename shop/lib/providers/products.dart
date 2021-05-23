@@ -6,16 +6,14 @@ import 'package:http/http.dart' as http;
 
 class Products with ChangeNotifier {
   List<Product> _items = [];
+  final String authToken;
+
+  Products(this.authToken,this._items);
+
 
   List<Product> get items {
     return [..._items];
   }
-
-  final String authToken;
-
-
-  Products(this._items, this.authToken);
-
 
 
   List<Product> get favoriteItems {
@@ -40,8 +38,10 @@ class Products with ChangeNotifier {
             description: prodData['description'],
             price: prodData['price'],
             imageUrl: prodData['imageUrl'],
-            isFavorite: prodData['isFavorite']));
+          isFavorite: prodData['isFavorite'],
+            ));
       });
+      print(loadedProducts.toString());
       _items = loadedProducts;
       notifyListeners();
     } catch (error) {}

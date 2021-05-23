@@ -10,7 +10,12 @@ class Auth with ChangeNotifier {
   String _userId;
 
   bool get isAuth {
+    print(token != null);
     return token != null;
+  }
+
+  String get userId {
+    return _userId;
   }
 
   String get token {
@@ -41,7 +46,7 @@ class Auth with ChangeNotifier {
       _userId = responseData['localId'];
       _expiryDate = DateTime.now()
           .add(Duration(seconds: int.parse(responseData['expiresIn'])));
-
+      notifyListeners();
     } catch (error) {
       throw error;
     }

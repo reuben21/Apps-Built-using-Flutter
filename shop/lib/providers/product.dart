@@ -9,42 +9,37 @@ class Product with ChangeNotifier {
   final String description;
   final double price;
   final String imageUrl;
+
   bool isFavorite;
 
-  Product({
-      @required this.id,
+
+  Product(
+      {@required this.id,
       @required this.title,
       @required this.description,
       @required this.price,
       @required this.imageUrl,
-      this.isFavorite = false
-      });
+      this.isFavorite = false,
+     });
 
+  void toggleFavoriteStatus(String authToken,String userId) async {
 
-  void toggleFavoriteStatus() async{
     final oldStatus = isFavorite;
     isFavorite = !isFavorite;
     notifyListeners();
     final url = Uri.parse(
-        "https://shopping-flutter-app-default-rtdb.asia-southeast1.firebasedatabase.app/products/$id.json");
+        "https://shopping-flutter-app-default-rtdb.asia-southeast1.firebasedatabase.app/userFavorites/$userId/$id.json?auth=$authToken");
     try {
-      final response = await http.patch(
-          url,
-          body: json.encode({
-            'isFavorite':isFavorite
-          })
-      );
+      final response =
+          await http.patch(url, body: json.encode({'isFavorite': isFavorite}));
 
-      if(response.statusCode >= 400) {
+      if (response.statusCode >= 400) {
         isFavorite = oldStatus;
         notifyListeners();
       }
+    } catch (error) {
+      isFavorite = oldStatus;
+      notifyListeners();
     }
-    catch (error) {
-        isFavorite = oldStatus;
-        notifyListeners();
-    }
-
-
   }
 }
