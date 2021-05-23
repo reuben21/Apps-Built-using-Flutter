@@ -88,8 +88,8 @@ class MyApp extends StatelessWidget {
             ),
           ),
         ),
+        home: auth.isAuth ? ProductsOverviewScreen() : AuthScreen(),
         routes: {
-          "/":(ctx) =>auth.isAuth ? ProductsOverviewScreen() : AuthScreen(),
           ProductDetailScreen.routeName: (ctx) => ProductDetailScreen(),
           CartScreen.routeName: (ctx) => CartScreen(),
           OrdersScreen.routeName: (ctx) => OrdersScreen(),
