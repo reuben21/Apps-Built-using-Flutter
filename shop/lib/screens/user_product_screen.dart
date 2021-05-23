@@ -10,15 +10,15 @@ class UserProductScreen extends StatelessWidget {
   static const routeName = '/user-products';
 
   Future<void> _refreshProducts(BuildContext context) async {
-    print("Refreshing");
-    Provider.of<Products>(context,listen: false).fetchAndSetProducts();
+
+    await Provider.of<Products>(context,listen: false).fetchAndSetProducts(true);
   }
 
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    final productsData = Provider.of<Products>(context);
 
+    print("Refreshing");
     return Scaffold(
       appBar: AppBar(
         title:
@@ -32,23 +32,28 @@ class UserProductScreen extends StatelessWidget {
         ],
       ),
       drawer: AppDrawer(),
-      body: RefreshIndicator(
-        onRefresh: ()=> _refreshProducts(context),
-        child:  Container(
-            color: kPrimaryColorAccent[100],
-            child: Padding(
-              padding: EdgeInsets.all(8),
-              child: ListView.builder(
-                itemBuilder: (_, i) => UserProductItem(
-                  productsData.items[i].title,
-                  productsData.items[i].imageUrl,
-                  productsData.items[i].id,
+      body: FutureBuilder(
+        future: _refreshProducts(context),
+        builder:(ctx,snapshot)=> snapshot.connectionState == ConnectionState.waiting ? Center(child: CircularProgressIndicator(),) :RefreshIndicator(
+          onRefresh: ()=> _refreshProducts(context),
+          child:  Container(
+              color: kPrimaryColorAccent[100],
+              child: Consumer<Products>(
+                builder:(ctx,productsData,_)=> Padding(
+                  padding: EdgeInsets.all(8),
+                  child: ListView.builder(
+                    itemBuilder: (_, i) => UserProductItem(
+                      productsData.items[i].title,
+                      productsData.items[i].imageUrl,
+                      productsData.items[i].id,
+                    ),
+                    itemCount: productsData.items.length,
+                  ),
                 ),
-                itemCount: productsData.items.length,
               ),
             ),
-          ),
 
+        ),
       ),
     );
   }

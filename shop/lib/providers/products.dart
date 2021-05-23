@@ -23,9 +23,37 @@ class Products with ChangeNotifier {
     return _items.firstWhere((prod) => prod.id == id);
   }
 
-  Future<void> fetchAndSetProducts() async {
+  // Future<void> fetchAndSetAllProducts() async {
+  //   final url = Uri.parse(
+  //       'https://shopping-flutter-app-default-rtdb.asia-southeast1.firebasedatabase.app/products.json?auth=$authToken&orderBy="creatorId"&equalTo="$userId"');
+  //   try {
+  //     final response = await http.get(url);
+  //     final extractedData = json.decode(response.body) as Map<String, dynamic>;
+  //     final url2 = Uri.parse(
+  //         "https://shopping-flutter-app-default-rtdb.asia-southeast1.firebasedatabase.app/userFavorites/$userId.json?auth=$authToken");
+  //     final favoriteResponse = await http.get(url2);
+  //     final favoriteData = json.decode(favoriteResponse.body);
+  //     final List<Product> loadedProducts = [];
+  //     extractedData.forEach((prodId, prodData) {
+  //       loadedProducts.add(Product(
+  //         id: prodId,
+  //         title: prodData['title'],
+  //         description: prodData['description'],
+  //         price: prodData['price'],
+  //         imageUrl: prodData['imageUrl'],
+  //         isFavorite: favoriteData == null ? false : favoriteData[prodId] ?? false,
+  //       ));
+  //     });
+  //
+  //     _items = loadedProducts;
+  //     notifyListeners();
+  //   } catch (error) {}
+  // }
+
+  Future<void> fetchAndSetProducts([bool filterByUser = false]) async {
+    final filterString = filterByUser ? 'orderBy="creatorId"&equalTo="$userId"' : '';
     final url = Uri.parse(
-        "https://shopping-flutter-app-default-rtdb.asia-southeast1.firebasedatabase.app/products.json?auth=$authToken");
+        'https://shopping-flutter-app-default-rtdb.asia-southeast1.firebasedatabase.app/products.json?auth=$authToken&$filterString');
     try {
       final response = await http.get(url);
       final extractedData = json.decode(response.body) as Map<String, dynamic>;
@@ -60,6 +88,7 @@ class Products with ChangeNotifier {
             "description": product.description,
             "price": product.price,
             "imageUrl": product.imageUrl,
+            'creatorId':userId
           }));
       var _responseData = json.decode(response.body);
       final newProduct = Product(
