@@ -7,14 +7,13 @@ import 'package:http/http.dart' as http;
 class Products with ChangeNotifier {
   List<Product> _items = [];
   final String authToken;
+  final String userId;
 
-  Products(this.authToken,this._items);
-
+  Products(this.authToken, this.userId, this._items);
 
   List<Product> get items {
     return [..._items];
   }
-
 
   List<Product> get favoriteItems {
     return _items.where((prodItem) => prodItem.isFavorite).toList();
@@ -30,18 +29,22 @@ class Products with ChangeNotifier {
     try {
       final response = await http.get(url);
       final extractedData = json.decode(response.body) as Map<String, dynamic>;
+      final url2 = Uri.parse(
+          "https://shopping-flutter-app-default-rtdb.asia-southeast1.firebasedatabase.app/userFavorites/$userId.json?auth=$authToken");
+      final favoriteResponse = await http.get(url2);
+      final favoriteData = json.decode(favoriteResponse.body);
       final List<Product> loadedProducts = [];
       extractedData.forEach((prodId, prodData) {
         loadedProducts.add(Product(
-            id: prodId,
-            title: prodData['title'],
-            description: prodData['description'],
-            price: prodData['price'],
-            imageUrl: prodData['imageUrl'],
-          isFavorite: prodData['isFavorite'],
-            ));
+          id: prodId,
+          title: prodData['title'],
+          description: prodData['description'],
+          price: prodData['price'],
+          imageUrl: prodData['imageUrl'],
+          isFavorite: favoriteData == null ? false : favoriteData[prodId] ?? false,
+        ));
       });
-      print(loadedProducts.toString());
+
       _items = loadedProducts;
       notifyListeners();
     } catch (error) {}
@@ -57,7 +60,6 @@ class Products with ChangeNotifier {
             "description": product.description,
             "price": product.price,
             "imageUrl": product.imageUrl,
-            "isFavorite": product.isFavorite
           }));
       var _responseData = json.decode(response.body);
       final newProduct = Product(
@@ -107,19 +109,12 @@ class Products with ChangeNotifier {
 
     final response = await http.delete(url);
     if (response.statusCode >= 400) {
-
       _items.insert(existingProductIndex, existingProduct);
       notifyListeners();
       throw HttpException('Could not Delete Product.');
-
     }
-      existingProduct = null;
-
-
-
+    existingProduct = null;
 
     // _items.insert(existingProductIndex, existingProduct);
-
-
   }
 }
