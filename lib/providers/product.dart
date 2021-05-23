@@ -31,7 +31,7 @@ class Product with ChangeNotifier {
         "https://shopping-flutter-app-default-rtdb.asia-southeast1.firebasedatabase.app/userFavorites/$userId/$id.json?auth=$authToken");
     try {
       final response =
-          await http.patch(url, body: json.encode({'isFavorite': isFavorite}));
+          await http.put(url, body: json.encode( isFavorite));
 
       if (response.statusCode >= 400) {
         isFavorite = oldStatus;
