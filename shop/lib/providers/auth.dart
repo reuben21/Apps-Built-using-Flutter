@@ -17,8 +17,9 @@ class Auth with ChangeNotifier {
     if (_expiryDate != null &&
         _expiryDate.isAfter(DateTime.now()) &&
         _token != null) {
-      return null;
+      return _token;
     }
+    return null;
   }
 
   var apiKey = "AIzaSyCQffLim4mxINXHQzuEnIHaB4bFoKJN9rs";
@@ -40,7 +41,7 @@ class Auth with ChangeNotifier {
       _userId = responseData['localId'];
       _expiryDate = DateTime.now()
           .add(Duration(seconds: int.parse(responseData['expiresIn'])));
-      print(json.decode(response.body));
+
     } catch (error) {
       throw error;
     }
