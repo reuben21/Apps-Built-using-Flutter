@@ -9,6 +9,7 @@ import 'package:shop/screens/edit_product_screen.dart';
 import 'package:shop/screens/orders_screen.dart';
 import 'package:shop/screens/product_detail_screen.dart';
 import 'package:shop/screens/products_overview_screen.dart';
+import 'package:shop/screens/splash_screen.dart';
 import 'package:shop/screens/user_product_screen.dart';
 import './colors.dart';
 import './providers/products.dart';
@@ -110,9 +111,7 @@ class MyApp extends StatelessWidget {
                           builder: (ctx, authResultSnapshot) =>
                               authResultSnapshot.connectionState ==
                                       ConnectionState.waiting
-                                  ? Center(
-                                      child: CircularProgressIndicator(),
-                                    )
+                                  ? SplashScreen()
                                   : AuthScreen()),
                   routes: {
                     ProductDetailScreen.routeName: (ctx) =>
