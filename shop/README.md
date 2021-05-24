@@ -2,9 +2,10 @@
 
 Packages used and learned about:
 <ol>
-<li> Provider Package </li>
-<li> Intl Package </li>
-<li> HTTP Package </li>
+<li> Provider Plugin </li>
+<li> Intl Plugin </li>
+<li> HTTP Plugin </li>
+<li> Shared Preferences Plugin </li>
 </ol>
 
 <ul>
