@@ -1,3 +1,4 @@
+// @dart=2.9
 import 'package:flutter/material.dart';
 import './models/meal.dart';
 import './data/dummy_data.dart';
@@ -6,6 +7,7 @@ import './screens/tabs_screen.dart';
 import './screens/meal_detail_screen.dart';
 import 'screens/cateogry_meals_screen.dart';
 import 'screens/categories_screen.dart';
+
 
 void main() {
   runApp(MyApp());

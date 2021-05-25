@@ -1,3 +1,4 @@
+// @dart=2.9
 import 'package:flutter/material.dart';
 import '../widgets/category_item.dart';
 import '../data/dummy_data.dart';

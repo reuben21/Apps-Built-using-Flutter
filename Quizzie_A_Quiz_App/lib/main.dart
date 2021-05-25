@@ -1,3 +1,5 @@
+import 'package:flutter/cupertino.dart';
+import 'package:lottie/lottie.dart';
 import 'package:flutter/material.dart';
 import 'color.dart';
 import 'quiz.dart';
@@ -18,43 +20,56 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   var _questionIndex = 0;
   var _totalScore = 0;
+  var _quizStart = false;
 
   // var _answerQuestion = 0;
   final _questions = const [
     {
-      'questionText': "What's your Favourite Color?",
+      'questionText': "What's Howard Stark's Butler's Name? ",
       'answers': [
-        {'text': 'Black', 'score': 10},
-        {'text': 'Red', 'score': 7},
-        {'text': 'Green', 'score': 8},
-        {'text': 'Yellow', 'score': 5}
+        {'text': 'EDWIN JARVIS', 'score': 10},
+        {'text': 'JARVIS', 'score': 0},
+        {'text': 'J.A.R.V.I.S.', 'score': 0},
+        {'text': 'H.O.M.E.R.', 'score': 0}
       ]
     },
     {
-      'questionText': "What's your Favourite Shape?",
+      'questionText':
+          "IRON MAN: What song plays at the beginning of the movie?",
       'answers': [
-        {'text': 'Square', 'score': 10},
-        {'text': 'Triangle', 'score': 17},
-        {'text': 'Rectangle', 'score': 18},
-        {'text': 'Circle', 'score': 15}
+        {'text': '"Iron Man" by Black Sabbath', 'score': 0},
+        {'text': ' "Ordinary World" by Duran Duran', 'score': 0},
+        {'text': '\"Back In Black\" by AC/DC', 'score': 10},
+        {'text': '"Stairway to Heaven" by Led Zeppelin', 'score': 0}
       ]
     },
     {
-      'questionText': "What's your Favourite Being?",
+      'questionText':
+          "SPIDER-MAN: FAR FROM HOME: What necklace does Peter buy for M.J.?",
       'answers': [
-        {'text': 'Dog', 'score': 10},
-        {'text': 'Cats', 'score': 7},
-        {'text': 'Puppies', 'score': 8},
-        {'text': 'All Of The', 'score': 15}
+        {'text': 'A Black Sunflower Necklace', 'score': 0},
+        {'text': 'A Black Dahlia Necklace', 'score': 10},
+        {'text': 'A Saint Christopher Necklace', 'score': 0},
+        {'text': 'A Blue Dahlia Necklace', 'score': 0}
       ]
     },
     {
-      'questionText': "What's your Favourite Phone?",
+      'questionText':
+          "AVENGERS: ENDGAME: What is Natasha's final line before she sacrifices herself on Vormir?",
       'answers': [
-        {'text': 'Phone A', 'score': 10},
-        {'text': 'Phone B', 'score': 7},
-        {'text': 'Phone C', 'score': 8},
-        {'text': 'Phone D', 'score': 5}
+        {'text': 'Let me go', 'score': 0},
+        {'text': 'It\'s Okay', 'score': 10},
+        {'text': 'Clint', 'score': 0},
+        {'text': 'Tell Everyone I ___', 'score': 0}
+      ]
+    },
+    {
+      'questionText': "CAPTAIN MARVEL: What is Carol's nickname for Monica?",
+      'answers': [
+        {'text': 'Sergeant Danger', 'score': 0},
+        {'text': 'Commander Monica', 'score': 0},
+        {'text': 'Lieutenant Trouble', 'score': 10},
+        {'text': 'General Mo', 'score': 0}
       ]
     },
   ];
@@ -63,11 +78,15 @@ class _MyAppState extends State<MyApp> {
     setState(() {
       _questionIndex = 0;
       _totalScore = 0;
+      _quizStart = false;
     });
   }
 
+  void startQuiz() {}
+
   void _answerQuestion(int score) {
     _totalScore += score;
+
     if (_questionIndex < _questions.length) {
       print("We Have More Questions");
     }
@@ -85,25 +104,68 @@ class _MyAppState extends State<MyApp> {
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primaryColor: marvelBlack,
+      ),
       home: Scaffold(
         appBar: AppBar(
-          title: Text("Quizzie",
+          title: Text("Quiz",
               style: TextStyle(
-                color: kShrineBrown900,
+                color: marvelRed,
                 fontSize: 30,
                 fontFamily: 'PT Serif',
                 fontWeight: FontWeight.w400,
               ),
               textAlign: TextAlign.center),
-          backgroundColor: kShrinePink300,
+          backgroundColor: marvelBlack,
         ),
-        backgroundColor: kShrinePink400,
-        body: _questionIndex < _questions.length
-            ? Quiz(
-                questions: _questions,
-                answerQuestion: _answerQuestion,
-                questionIndex: _questionIndex)
-            : Result(_totalScore, _restQuiz),
+        backgroundColor: marvelBlack,
+        body: _quizStart
+            ? _questionIndex < _questions.length
+                ? SingleChildScrollView(
+                    child: Quiz(
+                        questions: _questions,
+                        answerQuestion: _answerQuestion,
+                        questionIndex: _questionIndex),
+                  )
+                : Result(
+                    (_totalScore / (_questions.length * 10) * 100), _restQuiz)
+            : SingleChildScrollView(
+                child: Center(
+                  child: Column(
+                    children: <Widget>[
+                      SizedBox(height: 100),
+                      Lottie.asset('assets/question.json',
+                          width: 200, height: 200, fit: BoxFit.fill),
+                      TextButton(
+                          onPressed: () {
+                            setState(() {
+                              _quizStart = true;
+                            });
+                          },
+                          child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: marvelRed,
+                                boxShadow: [
+                                  BoxShadow(color: marvelRed.withOpacity(0.8), spreadRadius: 3),
+                                ],
+                              ),
+                              margin: EdgeInsets.all(8),
+                              padding: EdgeInsets.all(10),
+
+                              child: Text(
+                                'Start Quiz',
+                                style: TextStyle(
+                                    color: marvelBlack,
+                                    fontSize: 20,
+                                    fontFamily: 'PT Serif',
+                                    backgroundColor: marvelRed),
+                              )))
+                    ],
+                  ),
+                ),
+              ),
       ),
     );
   }

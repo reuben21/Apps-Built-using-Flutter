@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'color.dart';
 
@@ -11,8 +12,8 @@ class Answer extends StatelessWidget {
   Widget build(BuildContext context) {
     // TODO: implement build
     return Container(
-      width: 250,
-      height: 50,
+      width: 200,
+      height: 40,
       margin: EdgeInsets.all(30),
       child: ElevatedButton(
         // color: kShrinePink300,
@@ -23,14 +24,16 @@ class Answer extends StatelessWidget {
 
                   )
               ),
-            backgroundColor: MaterialStateProperty.all(kShrinePink300)
+            backgroundColor: MaterialStateProperty.all(marvelRed)
           ),
-        child: Text(answerText,style: TextStyle(
-              color: kShrineBrown900,
-              fontSize: 25,
-              fontFamily: 'PT Serif',
-              fontWeight: FontWeight.w400,
-            )),
+        child: FittedBox(
+          child: Text(answerText,style: TextStyle(
+                color: marvelBlack,
+                fontSize: 25,
+                fontFamily: 'PT Serif',
+                fontWeight: FontWeight.w400,
+              )),
+        ),
         onPressed: selectHandler,
       ),
 
