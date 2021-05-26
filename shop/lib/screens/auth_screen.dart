@@ -242,6 +242,7 @@ class _AuthCardState extends State<AuthCard>
                       return null;
                       return null;
                     },
+                    initialValue: 'reuben211999@gmail.com',
                     onSaved: (value) {
                       _authData['email'] = value;
                     },
@@ -255,6 +256,7 @@ class _AuthCardState extends State<AuthCard>
                           borderSide:
                               BorderSide(color: kPrimaryColorAccent[100])),
                     ),
+
                     obscureText: true,
                     controller: _passwordController,
                     validator: (value) {
