@@ -61,6 +61,7 @@ class MyApp extends StatelessWidget {
                     // or simply save your changes to "hot reload" in a Flutter IDE).
                     // Notice that the counter didn't reset back to zero; the application
                     // is not restarted.
+                    primaryColorLight: kPrimaryColor[100],
                     primaryColor: kPrimaryColor[100],
                     accentColor: kPrimaryColorAccent[100],
                     textTheme: ThemeData.light().textTheme.copyWith(
@@ -73,8 +74,9 @@ class MyApp extends StatelessWidget {
                             fontFamily: 'Handlee',
                           ),
                           headline6: TextStyle(
-                            color: Colors.redAccent,
-                            fontSize: 20,
+                            color: kPrimaryColorAccent[100],
+
+                            fontSize: 15,
                             fontFamily: 'PlayfairDisplay',
                           ),
                           headline5: TextStyle(

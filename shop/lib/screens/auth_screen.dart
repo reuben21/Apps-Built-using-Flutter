@@ -94,7 +94,8 @@ class AuthCard extends StatefulWidget {
   _AuthCardState createState() => _AuthCardState();
 }
 
-class _AuthCardState extends State<AuthCard> {
+class _AuthCardState extends State<AuthCard>
+    with SingleTickerProviderStateMixin {
   final GlobalKey<FormState> _formKey = GlobalKey();
   AuthMode _authMode = AuthMode.Login;
   Map<String, String> _authData = {
@@ -103,6 +104,28 @@ class _AuthCardState extends State<AuthCard> {
   };
   var _isLoading = false;
   final _passwordController = TextEditingController();
+
+  AnimationController _controller;
+  Animation<Size> _heightAnimation;
+
+  @override
+  void initState() {
+    _controller =
+        AnimationController(vsync: this, duration: Duration(milliseconds: 300));
+    _heightAnimation = Tween<Size>(
+            begin: Size(double.infinity, 260), end: Size(double.infinity, 320))
+        .animate(
+            CurvedAnimation(parent: _controller, curve: Curves.fastOutSlowIn));
+
+    _heightAnimation.addListener(() => setState(() {}));
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
 
   void _showErrorDialog(String message) {
     showDialog(
@@ -139,7 +162,6 @@ class _AuthCardState extends State<AuthCard> {
         await Provider.of<Auth>(context, listen: false)
             .signup(_authData['email'], _authData['password']);
       }
-
     } on HttpException catch (error) {
       var errorMessage = "Authentication Failed";
       if (error.toString().contains('EMAIL_EXISTS')) {
@@ -169,10 +191,12 @@ class _AuthCardState extends State<AuthCard> {
       setState(() {
         _authMode = AuthMode.Signup;
       });
+      _controller.forward();
     } else {
       setState(() {
         _authMode = AuthMode.Login;
       });
+      _controller.reverse();
     }
   }
 
@@ -186,9 +210,10 @@ class _AuthCardState extends State<AuthCard> {
       ),
       elevation: 8.0,
       child: Container(
-        height: _authMode == AuthMode.Signup ? 320 : 260,
-        constraints:
-            BoxConstraints(minHeight: _authMode == AuthMode.Signup ? 320 : 260),
+        // height: _authMode == AuthMode.Signup ? 320 : 260,
+        height: _heightAnimation.value.height,
+
+        constraints: BoxConstraints(minHeight: _heightAnimation.value.height),
         width: deviceSize.width * 0.75,
         padding: EdgeInsets.all(16.0),
         child: Form(
@@ -197,10 +222,14 @@ class _AuthCardState extends State<AuthCard> {
             child: Column(
               children: <Widget>[
                 TextFormField(
-                  style: Theme.of(context).textTheme.headline4,
+                  cursorColor: kPrimaryColorAccent[100],
+                  style: Theme.of(context).textTheme.headline6,
                   decoration: InputDecoration(
                     labelText: 'E-Mail',
-                    hintStyle: TextStyle(color: Colors.white),
+                    labelStyle: TextStyle(color: kPrimaryColorAccent[100]),
+                    focusedBorder: UnderlineInputBorder(
+                        borderSide:
+                            BorderSide(color: kPrimaryColorAccent[100])),
                   ),
                   keyboardType: TextInputType.emailAddress,
                   validator: (value) {
@@ -215,8 +244,14 @@ class _AuthCardState extends State<AuthCard> {
                   },
                 ),
                 TextFormField(
-                  style: Theme.of(context).textTheme.headline4,
-                  decoration: InputDecoration(labelText: 'Password'),
+                  style: Theme.of(context).textTheme.headline6,
+                  decoration: InputDecoration(
+                    labelText: 'Password',
+                    labelStyle: TextStyle(color: kPrimaryColorAccent[100]),
+                    focusedBorder: UnderlineInputBorder(
+                        borderSide:
+                            BorderSide(color: kPrimaryColorAccent[100])),
+                  ),
                   obscureText: true,
                   controller: _passwordController,
                   validator: (value) {
@@ -230,9 +265,15 @@ class _AuthCardState extends State<AuthCard> {
                 ),
                 if (_authMode == AuthMode.Signup)
                   TextFormField(
-                    style: Theme.of(context).textTheme.headline4,
+                    style: Theme.of(context).textTheme.headline6,
                     enabled: _authMode == AuthMode.Signup,
-                    decoration: InputDecoration(labelText: 'Confirm Password'),
+                    decoration: InputDecoration(
+                      labelText: 'Confirm Password',
+                      labelStyle: TextStyle(color: kPrimaryColorAccent[100]),
+                      focusedBorder: UnderlineInputBorder(
+                          borderSide:
+                              BorderSide(color: kPrimaryColorAccent[100])),
+                    ),
                     obscureText: true,
                     validator: _authMode == AuthMode.Signup
                         ? (value) {
