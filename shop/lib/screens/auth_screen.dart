@@ -200,6 +200,7 @@ class _AuthCardState extends State<AuthCard>
     }
   }
 
+
   @override
   Widget build(BuildContext context) {
     final deviceSize = MediaQuery.of(context).size;
@@ -305,7 +306,7 @@ class _AuthCardState extends State<AuthCard>
                 FlatButton(
                   child: Text(
                       '${_authMode == AuthMode.Login ? 'SIGNUP' : 'LOGIN'} INSTEAD',
-                      style: TextStyle(color: kPrimaryColorAccent[100])),
+                      style: Theme.of(context).textTheme.headline6),
                   onPressed: _switchAuthMode,
                   padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 4),
                   materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
