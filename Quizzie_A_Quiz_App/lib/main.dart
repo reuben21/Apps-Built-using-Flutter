@@ -135,8 +135,12 @@ class _MyAppState extends State<MyApp> {
                   child: Column(
                     children: <Widget>[
                       SizedBox(height: 100),
-                      Lottie.asset('assets/question.json',
-                          width: 200, height: 200, fit: BoxFit.fill),
+                      Icon(
+                        Icons.quiz,
+                        color:marvelRed,
+                        size: 100.0,
+                      ),
+                      SizedBox(height: 100),
                       TextButton(
                           onPressed: () {
                             setState(() {
