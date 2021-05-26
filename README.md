@@ -12,7 +12,7 @@
 </tr>
 
 <tr>
-<td style="text-align:center"> </div></td>
+<td style="text-align:center"> https://quizzy-app-flutter.web.app/#/ </td>
 <td style="text-align:center"> </td>
 <td style="text-align:center">  https://deli-dart-a-meals-app.web.app/#/ </td>
 </tr>
