@@ -19,20 +19,21 @@ class ProductItem extends StatelessWidget {
     // TODO: implement build
     final product = Provider.of<Product>(context, listen: false);
     final cart = Provider.of<Cart>(context, listen: false);
-    final authData = Provider.of<Auth>(context,listen: false);
+    final authData = Provider.of<Auth>(context, listen: false);
     return ClipRRect(
         borderRadius: BorderRadius.circular(12),
         child: GridTile(
           child: GestureDetector(
-            onTap: () {
-              Navigator.of(context).pushNamed(ProductDetailScreen.routeName,
-                  arguments: product.id);
-            },
-            child: Image.network(
-              product.imageUrl,
-              fit: BoxFit.cover,
-            ),
-          ),
+              onTap: () {
+                Navigator.of(context).pushNamed(ProductDetailScreen.routeName,
+                    arguments: product.id);
+              },
+              child: FadeInImage(
+                placeholder:
+                    AssetImage('assets/images/product-placeholder.png'),
+                image: NetworkImage(product.imageUrl),
+                fit: BoxFit.cover,
+              )),
           footer: Container(
             color: kPrimaryColor[100],
             child: Row(children: <Widget>[
@@ -47,7 +48,8 @@ class ProductItem extends StatelessWidget {
                       size: 18,
                     ),
                     onPressed: () {
-                      product.toggleFavoriteStatus(authData.token,authData.userId);
+                      product.toggleFavoriteStatus(
+                          authData.token, authData.userId);
                     },
                   ),
                 ),
@@ -74,10 +76,13 @@ class ProductItem extends StatelessWidget {
                           content: Text('Added ${product.title} to Cart',
                               style: Theme.of(context).textTheme.headline4),
                           duration: Duration(seconds: 2),
-                          action: SnackBarAction(label: 'Undo',textColor:kSecondaryColor[100],onPressed: (){
-                            cart.removeSingleItem(product.id);
-                          },)
-                      ),
+                          action: SnackBarAction(
+                            label: 'Undo',
+                            textColor: kSecondaryColor[100],
+                            onPressed: () {
+                              cart.removeSingleItem(product.id);
+                            },
+                          )),
                     );
                   },
                 ),

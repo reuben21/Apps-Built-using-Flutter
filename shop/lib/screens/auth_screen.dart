@@ -107,6 +107,7 @@ class _AuthCardState extends State<AuthCard>
 
   AnimationController _controller;
   Animation<Size> _heightAnimation;
+  Animation<double> _opacityAnimation;
 
   @override
   void initState() {
@@ -117,6 +118,8 @@ class _AuthCardState extends State<AuthCard>
         .animate(
             CurvedAnimation(parent: _controller, curve: Curves.fastOutSlowIn));
 
+    _opacityAnimation = Tween(begin: 0.0, end: 1.0)
+        .animate(CurvedAnimation(parent: _controller, curve: Curves.easeIn));
     _heightAnimation.addListener(() => setState(() {}));
     super.initState();
   }
@@ -200,7 +203,6 @@ class _AuthCardState extends State<AuthCard>
     }
   }
 
-
   @override
   Widget build(BuildContext context) {
     final deviceSize = MediaQuery.of(context).size;
@@ -212,64 +214,70 @@ class _AuthCardState extends State<AuthCard>
       elevation: 8.0,
       child: AnimatedBuilder(
         animation: _heightAnimation,
-        builder: (ctx,ch)=>  Container(
-          // height: _authMode == AuthMode.Signup ? 320 : 260,
-          height: _heightAnimation.value.height,
-
-          constraints: BoxConstraints(minHeight: _heightAnimation.value.height),
-          width: deviceSize.width * 0.75,
-          padding: EdgeInsets.all(16.0),
-          child:ch),child: Form(
-            key: _formKey,
-            child: SingleChildScrollView(
-              child: Column(
-                children: <Widget>[
-                  TextFormField(
-                    cursorColor: kPrimaryColorAccent[100],
-                    style: Theme.of(context).textTheme.headline6,
-                    decoration: InputDecoration(
-                      labelText: 'E-Mail',
-                      labelStyle: TextStyle(color: kPrimaryColorAccent[100]),
-                      focusedBorder: UnderlineInputBorder(
-                          borderSide:
-                              BorderSide(color: kPrimaryColorAccent[100])),
-                    ),
-                    keyboardType: TextInputType.emailAddress,
-                    validator: (value) {
-                      if (value.isEmpty || !value.contains('@')) {
-                        return 'Invalid email!';
-                      }
-                      return null;
-                      return null;
-                    },
-                    initialValue: 'reuben211999@gmail.com',
-                    onSaved: (value) {
-                      _authData['email'] = value;
-                    },
+        builder: (ctx, ch) => Container(
+            // height: _authMode == AuthMode.Signup ? 320 : 260,
+            height: _heightAnimation.value.height,
+            constraints:
+                BoxConstraints(minHeight: _heightAnimation.value.height),
+            width: deviceSize.width * 0.75,
+            padding: EdgeInsets.all(16.0),
+            child: ch),
+        child: Form(
+          key: _formKey,
+          child: SingleChildScrollView(
+            child: Column(
+              children: <Widget>[
+                TextFormField(
+                  cursorColor: kPrimaryColorAccent[100],
+                  style: Theme.of(context).textTheme.headline6,
+                  decoration: InputDecoration(
+                    labelText: 'E-Mail',
+                    labelStyle: TextStyle(color: kPrimaryColorAccent[100]),
+                    focusedBorder: UnderlineInputBorder(
+                        borderSide:
+                            BorderSide(color: kPrimaryColorAccent[100])),
                   ),
-                  TextFormField(
-                    style: Theme.of(context).textTheme.headline6,
-                    decoration: InputDecoration(
-                      labelText: 'Password',
-                      labelStyle: TextStyle(color: kPrimaryColorAccent[100]),
-                      focusedBorder: UnderlineInputBorder(
-                          borderSide:
-                              BorderSide(color: kPrimaryColorAccent[100])),
-                    ),
-
-                    obscureText: true,
-                    controller: _passwordController,
-                    validator: (value) {
-                      if (value.isEmpty || value.length < 5) {
-                        return 'Password is too short!';
-                      }
-                    },
-                    onSaved: (value) {
-                      _authData['password'] = value;
-                    },
+                  keyboardType: TextInputType.emailAddress,
+                  validator: (value) {
+                    if (value.isEmpty || !value.contains('@')) {
+                      return 'Invalid email!';
+                    }
+                    return null;
+                    return null;
+                  },
+                  initialValue: 'reuben211999@gmail.com',
+                  onSaved: (value) {
+                    _authData['email'] = value;
+                  },
+                ),
+                TextFormField(
+                  style: Theme.of(context).textTheme.headline6,
+                  decoration: InputDecoration(
+                    labelText: 'Password',
+                    labelStyle: TextStyle(color: kPrimaryColorAccent[100]),
+                    focusedBorder: UnderlineInputBorder(
+                        borderSide:
+                            BorderSide(color: kPrimaryColorAccent[100])),
                   ),
-                  if (_authMode == AuthMode.Signup)
-                    TextFormField(
+                  obscureText: true,
+                  controller: _passwordController,
+                  validator: (value) {
+                    if (value.isEmpty || value.length < 5) {
+                      return 'Password is too short!';
+                    }
+                  },
+                  onSaved: (value) {
+                    _authData['password'] = value;
+                  },
+                ),
+                AnimatedContainer(
+                  constraints: BoxConstraints(
+                      minHeight: _authMode == AuthMode.Signup ? 60 : 0,
+                      maxHeight: _authMode == AuthMode.Signup ? 120 : 0),
+                  duration: Duration(milliseconds: 300),
+                  child: FadeTransition(
+                    opacity: _opacityAnimation,
+                    child: TextFormField(
                       style: Theme.of(context).textTheme.headline6,
                       enabled: _authMode == AuthMode.Signup,
                       decoration: InputDecoration(
@@ -288,39 +296,41 @@ class _AuthCardState extends State<AuthCard>
                             }
                           : null,
                     ),
-                  SizedBox(
-                    height: 20,
                   ),
-                  if (_isLoading)
-                    CircularProgressIndicator()
-                  else
-                    RaisedButton(
-                      child: Text(
-                          _authMode == AuthMode.Login ? 'LOGIN' : 'SIGN UP',
-                          style: Theme.of(context).textTheme.headline4),
-                      onPressed: _submit,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30),
-                      ),
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 30.0, vertical: 8.0),
-                      color: Theme.of(context).primaryColor,
-                      textColor: Theme.of(context).primaryTextTheme.button.color,
-                    ),
-                  FlatButton(
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                if (_isLoading)
+                  CircularProgressIndicator()
+                else
+                  RaisedButton(
                     child: Text(
-                        '${_authMode == AuthMode.Login ? 'SIGNUP' : 'LOGIN'} INSTEAD',
-                        style: Theme.of(context).textTheme.headline6),
-                    onPressed: _switchAuthMode,
-                    padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 4),
-                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                    textColor: Theme.of(context).primaryColor,
+                        _authMode == AuthMode.Login ? 'LOGIN' : 'SIGN UP',
+                        style: Theme.of(context).textTheme.headline4),
+                    onPressed: _submit,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 30.0, vertical: 8.0),
+                    color: Theme.of(context).primaryColor,
+                    textColor: Theme.of(context).primaryTextTheme.button.color,
                   ),
-                ],
-              ),
+                FlatButton(
+                  child: Text(
+                      '${_authMode == AuthMode.Login ? 'SIGNUP' : 'LOGIN'} INSTEAD',
+                      style: Theme.of(context).textTheme.headline6),
+                  onPressed: _switchAuthMode,
+                  padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 4),
+                  materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                  textColor: Theme.of(context).primaryColor,
+                ),
+              ],
             ),
           ),
         ),
-      );
+      ),
+    );
   }
 }
