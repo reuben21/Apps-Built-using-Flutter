@@ -5,13 +5,14 @@ Packages used and learned about:
 <li> Provider Plugin </li>
 <li> Intl Plugin </li>
 <li> HTTP Plugin </li>
-<li> Shared Preferences Plugin </li>
+<li> SQL LITE Plugin </li>
 </ol>
 
 <ul>
 <li> Working with Forms and Controller </li>
 <li> Working with User Input & Forms </li>
 <li> Sending Http Requests </li>
+<li> Using SQL lite to Make an auto Sign In Feature </li>
 </ul>
 
 
