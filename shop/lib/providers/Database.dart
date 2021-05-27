@@ -54,6 +54,17 @@ class DBProvider {
     }
   }
 
+  deleteUserSession() async {
+    print("New User Session");
+    try {
+      final db = await database;
+      var delete = await db.rawInsert( '''DELETE FROM User''');
+      print("Deleted Session");
+    } catch (error) {
+      print(error);
+    }
+  }
+
   Future<dynamic> get getUserSession async {
     final db = await database;
     var res = await db.query("User");
