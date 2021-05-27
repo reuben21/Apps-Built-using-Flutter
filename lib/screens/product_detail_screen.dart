@@ -35,7 +35,8 @@ class ProductDetailScreen extends StatelessWidget {
                   height: 300,
                   width: double.infinity,
                   child:
-                      Image.network(loadedProduct.imageUrl, fit: BoxFit.cover),
+                      Hero(tag: loadedProduct.id,
+                          child: Image.network(loadedProduct.imageUrl, fit: BoxFit.cover)),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.all(Radius.circular(10))),
                 ),
