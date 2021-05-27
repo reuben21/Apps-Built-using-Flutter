@@ -106,12 +106,7 @@ class Auth with ChangeNotifier {
     _token = null;
     _userId = null;
     _expiryDate = null;
-    // SharedPreferences prefs = await SharedPreferences.getInstance();
-    // // prefs.remove('userData');
-    // final extractedUserData = json.decode(prefs.getString('userData')) as Map<String,Object>;
-    // final expiryDate = DateTime.parse(extractedUserData['expiryDate']);
-    // print(expiryDate.toString());
-    // prefs.clear();
+    await DBProvider.db.deleteUserSession();
     notifyListeners();
     if(_authTimer!=null) {
       _authTimer.cancel();

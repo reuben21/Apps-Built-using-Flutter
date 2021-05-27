@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shop/colors.dart';
+import 'package:shop/helpers/custom_route.dart';
 import 'package:shop/providers/auth.dart';
 import 'package:shop/providers/orders.dart';
 import 'package:shop/screens/orders_screen.dart';
@@ -37,7 +38,7 @@ class AppDrawer extends StatelessWidget {
               leading: Icon(Icons.shopping_cart,color: kSecondaryColor[100],),
               title:Text('Your Orders', style: Theme.of(context).textTheme.headline3),
               onTap: (){
-                Navigator.of(context).pushReplacementNamed(OrdersScreen.routeName);
+                Navigator.of(context).pushReplacement(CustomRoute(builder: (ctx)=>OrdersScreen() ) );
               },
             ),
             Divider(),
