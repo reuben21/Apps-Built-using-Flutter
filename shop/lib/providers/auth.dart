@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter/widgets.dart';
-
+import './Database.dart';
 import 'package:shop/models/http_exception.dart';
 
 class Auth with ChangeNotifier {
@@ -53,6 +53,7 @@ class Auth with ChangeNotifier {
           .add(Duration(seconds: int.parse(responseData['expiresIn'])));
       _autoLogout();
 
+      var dbResponse = await DBProvider.db.newUserSession(_userId, _token, _expiryDate.toIso8601String());
 
 
       // SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -81,21 +82,23 @@ class Auth with ChangeNotifier {
   }
   
   Future<bool> tryAutoLogin() async {
+    var userSession = await DBProvider.db.getUserSession;
+    print("USER SESSION");
     // SharedPreferences prefs = await SharedPreferences.getInstance();
     // if(prefs.containsKey('userData')) {
     //   return false;
     // }
     // print("Entered Extraction");
-    // final extractedUserData = json.decode(prefs.getString('userData')) as Map<String,dynamic>;
-    // final expiryDate = DateTime.parse(extractedUserData['expiryDate']);
-    // if(expiryDate.isBefore(DateTime.now())) {
-    //   return false;
-    // }
-    // _token = extractedUserData['token'];
-    // _userId = extractedUserData['userId'];
-    // _expiryDate = expiryDate;
-    // notifyListeners();
-    // _autoLogout();
+
+    final expiryDate = DateTime.parse(userSession['expiryDate']);
+    if(expiryDate.isBefore(DateTime.now())) {
+      return false;
+    }
+    _token = userSession['token'];
+    _userId = userSession['userId'];
+    _expiryDate = expiryDate;
+    notifyListeners();
+    _autoLogout();
     return true;
   }
 
