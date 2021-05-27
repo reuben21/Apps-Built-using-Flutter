@@ -13,6 +13,7 @@ Packages used and learned about:
 <li> Working with User Input & Forms </li>
 <li> Sending Http Requests </li>
 <li> Using SQL lite to Make an auto Sign In Feature </li>
+<li> Animation in Flutter </li>
 </ul>
 
 
