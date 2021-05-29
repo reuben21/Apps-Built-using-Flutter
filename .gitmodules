@@ -1,0 +1,3 @@
+[submodule "Great-Places-App-Flutter"]
+	path = Great-Places-App-Flutter
+	url = git@github.com:reuben21/Great-Places-App-Flutter.git
