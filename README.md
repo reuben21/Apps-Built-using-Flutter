@@ -9,7 +9,7 @@
 <td style="text-align:center"><div align="center"><h2>Quizzie - A Quiz App </h2> <img src="https://media.giphy.com/media/8dECHQExOShdD3gyFe/giphy.gif" /></div></td>
 <td style="text-align:center"><div align="center"><h2>Expense Tracker</h2> <img src="https://media.giphy.com/media/2xcsDEa6LLR8Pvpl3d/giphy.gif" /></div></td>
 <td style="text-align:center"><div align="center"><h2>Deli Dart- A Meal App</h2>
-https://user-images.githubusercontent.com/49688611/120113950-7828db80-c19a-11eb-8f0a-a61f12bb8084.mp4
+<video src="https://user-images.githubusercontent.com/49688611/120114002-cb029300-c19a-11eb-8ba5-48edfe0934d9.mp4" />
 </div></td>
 </tr>
 
