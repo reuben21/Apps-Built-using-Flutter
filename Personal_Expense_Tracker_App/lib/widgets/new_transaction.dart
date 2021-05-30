@@ -17,27 +17,31 @@ class _NewTransactionState extends State<NewTransaction> {
   final amountController = TextEditingController();
   DateTime selectDate;
 
-  void _submitData(){
+  void _submitData() {
     final enteredTitle = titleController.text;
     final enteredAmount = double.parse(amountController.text);
-    if(enteredTitle.isEmpty || enteredAmount <=0 || selectDate == null ) {
+    if (enteredTitle.isEmpty || enteredAmount <= 0 || selectDate == null) {
       return;
     }
-    widget.addTx(titleController.text,
-        double.parse(amountController.text),selectDate);
+    widget.addTx(
+        titleController.text, double.parse(amountController.text), selectDate);
     Navigator.of(context).pop();
   }
 
   void _presentDatePicker() {
-    showDatePicker(context: context, initialDate: DateTime.now(), firstDate: DateTime(2021), lastDate: DateTime.now())
-        .then((pickedDate){
-          if(pickedDate == null) {
-            return;
-          }
-          setState(() {
-            selectDate = pickedDate;
-          });
+    showDatePicker(
 
+            context: context,
+            initialDate: DateTime.now(),
+            firstDate: DateTime(2021),
+            lastDate: DateTime.now())
+        .then((pickedDate) {
+      if (pickedDate == null) {
+        return;
+      }
+      setState(() {
+        selectDate = pickedDate;
+      });
     });
   }
 
@@ -46,10 +50,10 @@ class _NewTransactionState extends State<NewTransaction> {
     // TODO: implement build
     return SingleChildScrollView(
       child: Container(
-        padding:EdgeInsets.only(
-          top:10,
-          left:10,
-          right:10,
+        padding: EdgeInsets.only(
+          top: 10,
+          left: 10,
+          right: 10,
           bottom: MediaQuery.of(context).viewInsets.bottom + 1,
         ),
         child: Column(
@@ -57,71 +61,75 @@ class _NewTransactionState extends State<NewTransaction> {
             crossAxisAlignment: CrossAxisAlignment.end,
             children: <Widget>[
               TextFormField(
-                  controller: titleController,
-                  cursorColor: colorLightGrey,
-                  maxLength: 20,
-                  onFieldSubmitted: (_)=>_submitData(),
-                  decoration: InputDecoration(
-                    labelText: 'Title',
-                    labelStyle: TextStyle(
+                controller: titleController,
+                cursorColor: colorLightGrey,
+                maxLength: 20,
+                onFieldSubmitted: (_) => _submitData(),
+                decoration: InputDecoration(
+                  labelText: 'Title',
+                  labelStyle: TextStyle(color: colorLightGrey),
+                  focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: colorLightGrey)),
+
+                  // helperText: 'Amount',
+                  suffixIcon: Icon(
+                    Icons.check_circle,
+                    color: colorLightGrey,
+                  ),
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(
                       color: colorLightGrey,
-                      fontSize: 20,
-                    ),
-                    // helperText: 'Amount',
-                    suffixIcon: Icon(
-                      Icons.check_circle,
-                    ),
-                    enabledBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: colorLightGrey,),
                     ),
                   ),
                 ),
+              ),
+              TextFormField(
+                controller: amountController,
+                cursorColor: colorLightGrey,
+                maxLength: 20,
+                keyboardType: TextInputType.number,
+                onFieldSubmitted: (_) => _submitData(),
+                decoration: InputDecoration(
+                  labelText: 'Title',
+                  labelStyle: TextStyle(color: colorLightGrey),
+                  focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: colorLightGrey)),
 
-             TextFormField(
-                  controller: amountController,
-                  cursorColor:colorLightGrey,
-                  maxLength: 20,
-                  keyboardType: TextInputType.number,
-                  onFieldSubmitted: (_)=>_submitData(),
-                  decoration: InputDecoration(
-                    labelText: 'Amount',
-                    labelStyle: TextStyle(
-                      color: colorLightGrey,
-                      fontSize: 20,
-                    ),
-                    // helperText: 'Helper text',
-                    suffixIcon: Icon(
-                      Icons.check_circle,
-                    ),
-                    enabledBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: colorLightGrey),
-                    ),
+                  // helperText: 'Helper text',
+                  suffixIcon: Icon(
+                    Icons.check_circle,
+                    color: colorLightGrey,
+                  ),
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: colorLightGrey),
                   ),
                 ),
-
-              Row(children: <Widget>[
-                 Text(selectDate == null ? 'No Date Chosen': DateFormat.yMd().format(selectDate)),
-
-                OutlinedButton.icon(
-                  onPressed: _presentDatePicker,
-                  icon: Icon(Icons.add, size: 18,color: colorLightGrey),
-                  label: Text("Choose Date",
-                      style: TextStyle(
-                        color: colorLightGrey,
-                        fontSize: 18,
-                      )),
-                ),
-              ],),
+              ),
+              Row(
+                children: <Widget>[
+                  Text(selectDate == null
+                      ? 'No Date Chosen'
+                      : DateFormat.yMd().format(selectDate)),
+                  OutlinedButton.icon(
+                    onPressed: _presentDatePicker,
+                    icon: Icon(Icons.add, size: 18, color: colorLightGrey),
+                    label: Text("Choose Date",
+                        style: TextStyle(
+                          color: colorLightGrey,
+                          fontSize: 18,
+                        )),
+                  ),
+                ],
+              ),
               OutlinedButton.icon(
-                  onPressed: _submitData,
-                  icon: Icon(Icons.add, size: 18,color: colorLightGrey),
-                  label: Text("Add Item",
-                      style: TextStyle(
-                        color: colorLightGrey,
-                        fontSize: 18,
-                      )),
-                ),
-
+                onPressed: _submitData,
+                icon: Icon(Icons.add, size: 18, color: colorLightGrey),
+                label: Text("Add Item",
+                    style: TextStyle(
+                      color: colorLightGrey,
+                      fontSize: 18,
+                    )),
+              ),
             ]),
       ),
     );

@@ -22,6 +22,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           primaryColor: colorMediumGreen,
           accentColor: colorBlack,
+          colorScheme: ColorScheme.light(primary: colorMediumGreen),
+          buttonTheme: ButtonThemeData(textTheme: ButtonTextTheme.primary),
           fontFamily: 'Montserrat',
           textTheme: ThemeData
               .light()
