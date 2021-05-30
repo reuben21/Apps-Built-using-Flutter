@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
           primaryColor: colorMediumGreen,
           accentColor: colorBlack,
           colorScheme: ColorScheme.light(primary: colorMediumGreen),
-          buttonTheme: ButtonThemeData(textTheme: ButtonTextTheme.primary),
+
           fontFamily: 'Montserrat',
           textTheme: ThemeData
               .light()
@@ -179,15 +179,17 @@ class _MyHomePageState extends State<MyHomePage> {
               )),
 
       floatingActionButton: FloatingActionButton(
+        backgroundColor: colorMediumGreen,
         child: IconButton(
+
           icon: const Icon(
             Icons.add_circle_outline,
-            color: colorMediumGreen,
+            color: colorBlack,
             size: 30.0,
             semanticLabel: 'Delete Icon',
           ),
           onPressed: () => _startAddNewTransaction(context),
-          color: colorBlack,
+
         ),
       ),
     );

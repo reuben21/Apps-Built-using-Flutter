@@ -90,7 +90,7 @@ class _NewTransactionState extends State<NewTransaction> {
                 keyboardType: TextInputType.number,
                 onFieldSubmitted: (_) => _submitData(),
                 decoration: InputDecoration(
-                  labelText: 'Title',
+                  labelText: 'Price',
                   labelStyle: TextStyle(color: colorLightGrey),
                   focusedBorder: UnderlineInputBorder(
                       borderSide: BorderSide(color: colorLightGrey)),
