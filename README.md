@@ -19,7 +19,7 @@
 
 <tr>
 <td style="text-align:center"> https://quizzy-app-flutter.web.app/#/ </td>
-<td style="text-align:center"> </td>
+<td style="text-align:center"> https://personal-expense-tracker-app.web.app/#/ </td>
 <td style="text-align:center">  https://deli-dart-a-meals-app.web.app/#/ </td>
 </tr>
         
