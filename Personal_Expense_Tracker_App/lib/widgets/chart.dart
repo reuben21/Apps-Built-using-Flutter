@@ -1,4 +1,4 @@
-import 'package:expense_tracker_app/models/transaction.dart';
+import '../models/transaction.dart';
 import 'package:flutter/material.dart';
 import '../models/transaction.dart';
 import '../COLORS.dart';
