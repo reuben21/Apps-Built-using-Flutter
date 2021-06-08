@@ -1,3 +1,6 @@
 [submodule "Great-Places-App-Flutter"]
 	path = Great-Places-App-Flutter
 	url = git@github.com:reuben21/Great-Places-App-Flutter.git
+[submodule "QuickChat-A-Chat-App-Flutter-Firebase"]
+	path = QuickChat-A-Chat-App-Flutter-Firebase
+	url = git@github.com:reuben21/QuickChat-A-Chat-App-Flutter-Firebase.git
