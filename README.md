@@ -6,6 +6,16 @@
 <td colspan="3"><div align="center"><h2>Apps Made By Me with ❤️</h2></div></td>
 </tr>
 <tr>
+<td colspan="3" style="text-align:center"><div align="center"><h2>You Shop - Shopping App Flutter </h2>
+<video src="https://user-images.githubusercontent.com/49688611/120115754-c7730a00-c1a2-11eb-8730-794c401f97df.mp4" />
+</div>
+</td>
+</tr>
+<tr>
+<td colspan="3" style="text-align:center">  https://you-shop-app-flutter.web.app/#/ </td>
+</tr>
+        
+<tr>
 <td style="text-align:center"><div align="center"><h2>Quizzie - A Quiz App </h2>
 <video src="https://user-images.githubusercontent.com/49688611/120115754-c7730a00-c1a2-11eb-8730-794c401f97df.mp4" />
 </div></td>
