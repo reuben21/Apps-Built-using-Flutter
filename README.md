@@ -10,9 +10,10 @@
 </tr>
 <tr>
 <td colspan="2" style="text-align:center"><div align="center"><h2>You Shop - Shopping App Flutter </h2>
-<video src="https://user-images.githubusercontent.com/49688611/120115754-c7730a00-c1a2-11eb-8730-794c401f97df.mp4" />
+       
+<video src="https://user-images.githubusercontent.com/49688611/122666473-09ec9d00-d1cb-11eb-9580-83d49dee813d.mp4" autoplay controls width="100%" height="100%" />
 <td colspan="1" style="text-align:center"><div align="center"><h2>Great Places App </h2>
-<video src="https://user-images.githubusercontent.com/49688611/122648008-c0f20580-d144-11eb-89a5-ad7915f346de.mp4" />
+<video src="https://user-images.githubusercontent.com/49688611/122648008-c0f20580-d144-11eb-89a5-ad7915f346de.mp4" autoplay controls width="100%" height="100%" />
 </div>
 </td>
 </tr>
