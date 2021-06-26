@@ -1,17 +1,19 @@
 <h1> Apps-Built-with-Flutter</h1>
 
 
-
-
 <table style="border:1px solid black">
 <tbody>
 <tr>
 <td colspan="3"><div align="center"><h2>Apps Made By Me with ❤️</h2></div></td>
 </tr>
 <tr>
-<td colspan="2" style="text-align:center"><div align="center"><h2>You Shop - Shopping App Flutter </h2>
-       
+<td colspan="2" style="text-align:center"><div align="center"><h2>QuicChat - A Chat App </h2>
+<video src="https://user-images.githubusercontent.com/49688611/122681288-26abc380-d211-11eb-875d-93e2058fccdc.mp4" autoplay controls width="100%" height="100%" />
+<td colspan="1" style="text-align:center"><div align="center"><h2>You Shop - Shopping App Flutter </h2>  
 <video src="https://user-images.githubusercontent.com/49688611/122666473-09ec9d00-d1cb-11eb-9580-83d49dee813d.mp4" autoplay controls width="100%" height="100%" />
+</tr>
+<tr>
+
 <td colspan="1" style="text-align:center"><div align="center"><h2>Great Places App </h2>
 <video src="https://user-images.githubusercontent.com/49688611/122648008-c0f20580-d144-11eb-89a5-ad7915f346de.mp4" autoplay controls width="100%" height="100%" />
 </div>
