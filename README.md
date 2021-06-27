@@ -18,13 +18,6 @@
 <video src="https://user-images.githubusercontent.com/49688611/122648008-c0f20580-d144-11eb-89a5-ad7915f346de.mp4" autoplay controls width="100%" height="100%" />
 </div>
 </td>
-</tr>
-        
-<tr>
-<td colspan="3" style="text-align:center">  https://you-shop-app-flutter.web.app/#/ </td>
-</tr>
-        
-<tr>
 <td style="text-align:center"><div align="center"><h2>Quizzie - A Quiz App </h2>
   
 <video src="https://user-images.githubusercontent.com/49688611/122643130-b119f780-d12b-11eb-9a02-64e983090e11.mp4" autoplay controls width="100%" height="100%"/>
@@ -32,6 +25,14 @@
 <td style="text-align:center"><div align="center"><h2>Expense Tracker</h2> 
 <video src="https://user-images.githubusercontent.com/49688611/122643890-f809ec00-d12f-11eb-9c0f-a79f581f7e0e.mp4" autoplay controls width="100%" height="100%"/>
 </div></td>
+</tr>
+        
+<tr>
+<td colspan="3" style="text-align:center">  https://you-shop-app-flutter.web.app/#/ </td>
+</tr>
+        
+<tr>
+
 <td style="text-align:center"><div align="center"><h2>Deli Dart- A Meal App</h2>
 <video src="https://user-images.githubusercontent.com/49688611/122643844-bc6f2200-d12f-11eb-8034-8623317f9d0c.mp4" autoplay controls width="100%" height="100%"/>
 </div></td>
