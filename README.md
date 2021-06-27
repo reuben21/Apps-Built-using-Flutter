@@ -26,7 +26,11 @@
 <video src="https://user-images.githubusercontent.com/49688611/122643890-f809ec00-d12f-11eb-9c0f-a79f581f7e0e.mp4" autoplay controls width="100%" height="100%"/>
 </div></td>
 </tr>
-        
+<tr>
+<td style="text-align:center"> https://quizzy-app-flutter.web.app/#/ </td>
+<td style="text-align:center"> https://personal-expense-tracker-app.web.app/#/ </td>
+<td style="text-align:center">  https://deli-dart-a-meals-app.web.app/#/ </td>
+</tr> 
 <tr>
 <td colspan="3" style="text-align:center">  https://you-shop-app-flutter.web.app/#/ </td>
 </tr>
@@ -40,8 +44,6 @@
 
 <tr>
 <td style="text-align:center"> https://quizzy-app-flutter.web.app/#/ </td>
-<td style="text-align:center"> https://personal-expense-tracker-app.web.app/#/ </td>
-<td style="text-align:center">  https://deli-dart-a-meals-app.web.app/#/ </td>
 </tr>
         
 
