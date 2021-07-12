@@ -13,6 +13,10 @@
 <video src="https://user-images.githubusercontent.com/49688611/122666473-09ec9d00-d1cb-11eb-9580-83d49dee813d.mp4" autoplay controls width="100%" height="100%" />
 </tr>
 <tr>
+<td colspan="2" style="text-align:center">   </td>
+<td colspan="1" style="text-align:center">  https://you-shop-app-flutter.web.app/#/ </td>
+</tr>
+<tr>
 
 <td colspan="1" style="text-align:center"><div align="center"><h2>Great Places App </h2>
 <video src="https://user-images.githubusercontent.com/49688611/122648008-c0f20580-d144-11eb-89a5-ad7915f346de.mp4" autoplay controls width="100%" height="100%" />
@@ -31,9 +35,7 @@
 <td style="text-align:center"> https://personal-expense-tracker-app.web.app/#/ </td>
 <td style="text-align:center">  https://deli-dart-a-meals-app.web.app/#/ </td>
 </tr> 
-<tr>
-<td colspan="3" style="text-align:center">  https://you-shop-app-flutter.web.app/#/ </td>
-</tr>
+
         
 <tr>
 
