@@ -4,3 +4,6 @@
 [submodule "QuickChat-A-Chat-App-Flutter-Firebase"]
 	path = QuickChat-A-Chat-App-Flutter-Firebase
 	url = git@github.com:reuben21/QuickChat-A-Chat-App-Flutter-Firebase.git
+[submodule "Shop-App-in-Flutter"]
+	path = Shop-App-in-Flutter
+	url = https://github.com/reuben21/Shop-App-in-Flutter.git
